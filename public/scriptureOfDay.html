@@ -38,7 +38,7 @@
 				<h3 id="chapter"></h3>
 				<h3 id="verse"></h3> 
 			</div>
-			<div class="content">
+			<div id="content" class="content">
 				<!-- <p>The thing which I greatly feared is come upon me, and that which I was afraid of is come unto me. </p> -->
 			</div>
 			
@@ -67,7 +67,7 @@
 
 		</div>
 <script>
-	var chapter = 0;
+	
 	//AJAX CALLS ON TOPIC BUTTON CLICKS
 	$("#fear").click(function(){
 		$.ajax({
@@ -166,7 +166,12 @@
 			url: "/getScriptureByID?id="+id,
 			success: function(result){
 				var data = JSON.parse(result);
-				chapter = data[0].chapter;
+				
+				document.getElementById('book').innerHTML = data[0].book; 
+				document.getElementById('chapter').innerHTML = data[0].chapter; 
+				document.getElementById('verse').innerHTML = data[0].verse; 
+				document.getElementById('content').innerHTML = data[0].content; 
+				// var chapter = data[0].chapter;
 				// console.log("line 166: "+ data[0].chapter);
 				console.log(chapter);
 				return data;
