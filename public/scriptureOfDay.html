@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scripture of the Day</title>
+	<!-- <% include ../partials/header.ejs %> -->
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+
+</style>
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Scripture of the Day</a>
+		</div>
+		<ul class="nav navbar-nav">
+		  <li class="active"><a href="#">Home</a></li>
+	      <li><a href="#">Scriptures</a></li>
+	      <li><a href="#">Notifications</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#" <span class="glyphicon glyphicon-log-out">Logout</a></li>
+		</ul>
+	</div>
+</nav>
+	<!-- <% include ../partials/navbar.ejs %> -->
+	<div class="jumbotron">
+		<div class="container text-center">
+			<h1>Scripture of the Day</h1>
+			<div class="reference text-center">
+				<h3> Book <% chapter %>:14</h3>
+			</div>
+			<div class="content">
+				<p>The thing which I greatly feared is come upon me, and that which I was afraid of is come unto me. </p>
+			</div>
+			
+		</div>
+	</div>
+	<div class="container col-lg-4 col-offset-4 ">
+		<ul class="nav navbar-nav  ">
+		    <li class="nav-item">
+		      <span class="glyphicon glyphicon-tags"></span>
+		    </li>
+		    <!-- Add loop here to pull all data for topics for that scripture <% topic %> -->
+		    <li class="nav-item">
+		      <button type="button" id="fear" class="btn btn-default">Fear</button>
+		    </li>
+		    <li class="nav-item">
+		      <button type="button" id="faith" class="btn btn-default">Faith</button>
+		    </li>
+		    <!-- end the loop -->
+		    <li class="nav-item">
+		      <button type="button" id="allTopics" class="btn btn-default">All Topics</button>
+		    </li>
+		 </ul>
+		 
+	</div>
+	<div id="results" class="results">
+
+		</div>
+<script>
+	var chapter = 0;
+	//AJAX CALLS ON TOPIC BUTTON CLICKS
+	$("#fear").click(function(){
+		$.ajax({
+			type: "GET",
+			url: "/getUser?id=1",
+			success: function(result){
+				var json = JSON.parse(result);
+				console.log(json[0].id);
+				$("#results").html(json[0].id);
+				
+			}
+
+		})
+	})
+	$("#allTopics").click(function(){
+		$.ajax({
+			type: "GET",
+			url: "/getAllTopics",
+			success: function(result){
+				var topics = JSON.parse(result);
+				// console.log(topics[0].name);
+				displayAllTopics(topics);
+				// $("#results").html(json[0].name);
+				
+			}
+
+		})
+	})
+
+	function displayAllTopics(topics){
+		//get reference for body
+		var div1 = document.getElementById('results');
+
+		//create table
+		var tbl = document.createElement('table');
+		// tbl.style.width = '100%';
+		 tbl.setAttribute("style", 'font-size: 2em;');
+		 tbl.setAttribute("style", 'width: 100%;');
+		var thead = document.createElement('thead');
+		var trHead = document.createElement('tr');
+		var textNodeHeader = document.createTextNode("SCRIPTURE TOPICS");
+
+		trHead.appendChild(textNodeHeader);
+		thead.appendChild(trHead);
+		tbl.appendChild(thead);
+  		var tbdy = document.createElement('tbody');
+		for(var i = 0; i < topics.length; i++){
+			console.log(topics[i].name);
+			//dynamically create a table here
+			var tr = document.createElement('tr');
+			var td = document.createElement('td');
+			var textNode = document.createTextNode(topics[i].name);
+			td.appendChild(textNode);
+			tr.appendChild(td);
+			tbdy.appendChild(tr); 
+		}
+		tbl.appendChild(tbdy);
+		div1.appendChild(tbl);
+	}
+
+	function getRandomScripture(){
+
+		//get # of scriptures in db
+		var total = getTotalNumScriptures(getScriptureByID);
+		
+
+
+	}
+
+	//Return the total number of scriptures from the database
+	function getTotalNumScriptures(callback){
+		// return 10;
+		//pull data from db and return number
+		$.ajax({
+			type: "GET",
+			url: "/getCountScriptures",
+			success: function(result){
+				var numScriptures = JSON.parse(result);
+				console.log(numScriptures[0].count);
+				var total = numScriptures[0].count;
+				//generate random # and truncate to whole number
+				var random = Math.floor(((Math.random() * total) + 1)); 
+				//get all data for the scripture (including topics)
+				var data = getScriptureByID(random);
+				console.log("Line 152: " + data);
+			}
+
+		})
+	}
+
+	//GET Scripture by ID - returns all data related to scripture
+	function getScriptureByID(id){
+		console.log("Scripture reference is being returned for id=" + id);
+		$.ajax({
+			type: "GET",
+			url: "/getScriptureByID?id="+id,
+			success: function(result){
+				var data = JSON.parse(result);
+				chapter = data[0].chapter;
+				// console.log("line 166: "+ data[0].chapter);
+				console.log(chapter);
+				return data;
+				// console.log(topics[0].name);
+				// displayAllTopics(topics);
+				// $("#results").html(json[0].name);
+			}
+		})
+	}
+	window.addEventListener('load', getRandomScripture);
+
+</script>
+</body>
+</html>
