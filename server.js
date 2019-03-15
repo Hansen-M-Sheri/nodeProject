@@ -15,7 +15,8 @@ app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res)=> {
   	res.sendFile(__dirname + '/public/scriptureOfDay.html')
-  })
+  	// res.render(__dirname + '/views/pages/scriptureOfDay.ejs')
+  });
 
 app.get('/getUser', getUser);
 app.get('/getAllTopics', getAllTopics);
@@ -36,7 +37,7 @@ function getUser(req, res){
 
 	const id = req.query.id;
 	console.log(id);
-	const sql = 'SELECT * FROM public.user WHERE id = $1::int';
+	const sql = 'SELECT * FROM scripture.user WHERE id = $1::int';
 	const params = [id];
 
 	pool.query(sql, params, function(err, result){
@@ -54,7 +55,7 @@ function getUser(req, res){
 function getAllTopics(req, res){
 	console.log("Getting all topics");
 
-	const sql = 'SELECT name FROM public.topic;';
+	const sql = 'SELECT name FROM scripture.topic;';
 
 	pool.query(sql, function(err, result){
 		if (err) {
@@ -71,7 +72,7 @@ function getAllTopics(req, res){
 function getReferencesByTopic(req, res){
 	console.log("Getting all references by topic with id: " + id);
 
-	const sql = 'SELECT name FROM public.topic;';
+	const sql = 'SELECT name FROM scripture.topic;';
 
 	pool.query(sql, function(err, result){
 		if (err) {
@@ -88,7 +89,7 @@ function getReferencesByTopic(req, res){
 function getCountScriptures(req, res){
 	console.log("Getting total number of scriptures in db");
 
-	const sql = 'SELECT COUNT(*) FROM public.scripture;';
+	const sql = 'SELECT COUNT(*) FROM scripture.scripture;';
 
 	pool.query(sql, function(err, result){
 		if (err) {
@@ -105,7 +106,7 @@ function getCountScriptures(req, res){
 function getScriptureByID(req, res){
 	console.log("Getting info for scripture id: " + req.query.id);
 	var id = req.query.id;
-	const sql = 'SELECT * FROM public.scripture WHERE id ='+id;
+	const sql = 'SELECT * FROM scripture.scripture WHERE id ='+id;
 
 	pool.query(sql, function(err, result){
 		if (err) {

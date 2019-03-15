@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="navBar navbar-expand-sm bg-dark navbar-dark" >
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="signup.php">Signup</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+	 <!-- Jumbotron -->
+    <div class="jumbotron bg-info" id="banner">
+      <h1>Scripture of the Day</h1>      
+  	</div>
+  	
+  	
+  	<div class="container">
+		<form class="form-group col-md-4 col-md-offset-4"action="includes/login_inc.php" method="POST" >
+			<center><h2>Login</h2></center><br>
+			<input type="text" placeholder="Email" name="email" class="form-control" required><br>
+			<input type="password" placeholder="Password" name="pwd" class="form-control" required><br>
+			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="/login">
+		</form>	
+	</div>
+</body>
+</html>
