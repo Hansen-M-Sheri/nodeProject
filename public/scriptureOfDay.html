@@ -38,7 +38,8 @@
 				<h3 id="chapter"></h3>
 				<h3 id="verse"></h3> 
 			</div>
-			<div id="content" class="content">
+			<div class="content">
+				<h4 id="content"></h4>
 				<!-- <p>The thing which I greatly feared is come upon me, and that which I was afraid of is come unto me. </p> -->
 			</div>
 			
@@ -170,7 +171,7 @@
 				var chapter = data[0].chapter;
 				var verse = data[0].verse;
 				
-				document.getElementById('book').innerHTML = book + " " + chapter + ":" + verse; 
+				document.getElementById('reference').innerHTML = book + " " + chapter + ":" + verse; 
 				 
 				document.getElementById('content').innerHTML = data[0].content; 
 				// var chapter = data[0].chapter;
