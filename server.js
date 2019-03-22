@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
+var bodyParser = require('body-parser');
+var sessions = require('express-session');
 
-
+var session; //global
 
  require('dotenv').config();
 var http = require('http');
@@ -13,10 +15,7 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
-app.get('/', (req, res)=> {
-  	res.sendFile(__dirname + '/public/scriptureOfDay.html')
-  	// res.render(__dirname + '/views/pages/scriptureOfDay.ejs')
-  });
+ 
 
 app.get('/getUser', getUser);
 app.get('/getAllTopics', getAllTopics);
@@ -26,7 +25,12 @@ app.get('/getScriptureByID', getScriptureByID);
 // app.get('/getUser', function(req, res){
 // 	res.send("WHEEE");
 // });
-
+app.get('/login', function(req, resp){
+	resp.sendFile('login.html', {root:__dirname});
+})
+app.post('/login', function(req, resp){
+	resp.end(JSON.stringify(req.body));
+})
 // Start the server running
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
