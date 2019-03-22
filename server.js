@@ -5,7 +5,7 @@ var sessions = require('express-session');
 
 var session; //global
 
- require('dotenv').config();
+require('dotenv').config();
 var http = require('http');
 const { Pool } = require('pg');
 
@@ -15,7 +15,13 @@ const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
- 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+ app.use(session({
+ 	secret:'9834lw84oi*#&$#@)#odoinIDLKNC*#&'
+ }))
 
 app.get('/getUser', getUser);
 app.get('/getAllTopics', getAllTopics);
@@ -30,7 +36,15 @@ app.get('/login', function(req, resp){
 })
 app.post('/login', function(req, resp){
 	resp.end(JSON.stringify(req.body));
+	if(req.body.email == 'true'){
+		session.id = req.body.email;
+	}
 })
+
+app.get('/notification', function(req, resp){
+	resp.sendFile('notification.html', {root:__dirname});
+})
+
 // Start the server running
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));

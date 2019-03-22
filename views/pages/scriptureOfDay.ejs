@@ -34,9 +34,8 @@
 		<div class="container text-center">
 			<h1>Scripture of the Day</h1>
 			<div class="reference text-center">
-				<h3 id="book"></h3>
-				<h3 id="chapter"></h3>
-				<h3 id="verse"></h3> 
+				<h3 id="reference"></h3>
+				 
 			</div>
 			<div class="content">
 				<!-- <p>The thing which I greatly feared is come upon me, and that which I was afraid of is come unto me. </p> -->
@@ -85,7 +84,7 @@
 	$("#allTopics").click(function(){
 		$.ajax({
 			type: "GET",
-			url: "/getAllTopics",
+			url: "/topics",
 			success: function(result){
 				var topics = JSON.parse(result);
 				// console.log(topics[0].name);
