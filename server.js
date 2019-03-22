@@ -19,12 +19,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
- app.use(session({
- 	secret:'9834lw84oi*#&$#@)#odoinIDLKNC*#&'
- }))
+ // app.use(session({
+ // 	secret:'9834lw84oi*#&$#@)#odoinIDLKNC*#&'
+ // }))
 
 app.get('/getUser', getUser);
-app.get('/getAllTopics', getAllTopics);
+app.get('/topics', getAllTopics);
 app.get('/getCountScriptures', getCountScriptures);
 app.get('/getScriptureByID', getScriptureByID);
 
