@@ -15,9 +15,9 @@
 <div class="container">
 		<form class="form-group col-md-4 col-md-offset-4"action="/notification" method="POST" >
 			<center><h2>Notification Creation</h2></center><br>
-			<select name="topics" id="select">
+			<!-- <select name="topics" id="select">
 				
-			</select><br>
+			</s -->elect><br>
 			<div id="buttons">
 			</div>
 			
@@ -55,6 +55,7 @@
 				// select.appendChild(option);
 				var button = document.createElement('button');
 				button.innerHTML = topics[i].name;
+				buttons.appendChild(button);
 			}
 		}
 	</script>
