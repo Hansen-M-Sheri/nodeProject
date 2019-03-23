@@ -85,7 +85,7 @@
 	$("#allTopics").click(function(){
 		$.ajax({
 			type: "GET",
-			url: "/getAllTopics",
+			url: "/topics",
 			success: function(result){
 				var topics = JSON.parse(result);
 				// console.log(topics[0].name);
