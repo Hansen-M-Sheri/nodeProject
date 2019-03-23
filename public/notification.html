@@ -18,8 +18,10 @@
 			<select name="topics" id="select">
 				
 			</select><br>
+			<div id="buttons">
+			</div>
 			
-			<input type="submit" name="createNotification" class="btn btn-primary btn-block" onclick="login">
+			<!-- <input type="submit" name="createNotification" class="btn btn-primary btn-block" onclick="login"> -->
 		</form>	
 	</div>
 
@@ -42,15 +44,17 @@
 		}
 
 		function displayDropDownTopics(topics){
-			var select = document.getElementById('select');
+			var buttons = document.getElementById('buttons');
 			
 			for(var i = 0; i < topics.length; i++){
-				var option = document.createElement('option');
-				option.value = topics[i].name;
-				option.innerHTML = topics[i].name;
+				// var option = document.createElement('option');
+				// option.value = topics[i].name;
+				// option.innerHTML = topics[i].name;
 				// option.value = "test";
 				// option.innerHTML = "This is a test";
-				select.appendChild(option);
+				// select.appendChild(option);
+				var button = document.createElement('button');
+				button.innerHTML = topics[i].name;
 			}
 		}
 	</script>
