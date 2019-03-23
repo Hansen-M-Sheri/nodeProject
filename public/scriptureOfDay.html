@@ -25,7 +25,7 @@
 	      <li><a href="notifications.html">Notifications</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" <span class="glyphicon glyphicon-log-out">Logout</a></li>
+			<li><a id="logout" <span class="glyphicon glyphicon-log-out">Logout</a></li>
 		</ul>
 	</div>
 </nav>
@@ -69,6 +69,15 @@
 <script>
 	
 	//AJAX CALLS ON TOPIC BUTTON CLICKS
+	$("#logout").click(function(){
+		$.post("/logout", function(result) {
+		if (result && result.success) {
+			$("#status").text("Successfully logged out.");
+		} else {
+			$("#status").text("Error logging out.");
+		}
+	});
+	})
 	$("#fear").click(function(){
 		$.ajax({
 			type: "GET",
