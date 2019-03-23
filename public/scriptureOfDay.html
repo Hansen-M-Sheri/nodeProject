@@ -40,7 +40,7 @@
 			</div>
 			<div class="content">
 				<h4 id="content"></h4>
-				<!-- <p>The thing which I greatly feared is come upon me, and that which I was afraid of is come unto me. </p> -->
+				
 			</div>
 			
 		</div>
@@ -166,6 +166,7 @@
 			type: "GET",
 			url: "/getScriptureByID?id="+id,
 			success: function(result){
+				console.log("line 169 : " + result);
 				var data = JSON.parse(result);
 				var book = data[0].book;
 				var chapter = data[0].chapter;
