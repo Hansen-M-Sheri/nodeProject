@@ -47,8 +47,10 @@
 		};
 
 		$.post("/login", params, function(result) {
+			// console.log("result: "+ result);
 			if (result && result.success) {
-				$("#status").text("Successfully logged in.");
+				$("#status").text("Logging you in....");
+				window.location.href = "scriptureOfDay.html";
 			} else {
 				$("#status").text("Error logging in.");
 			}

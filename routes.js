@@ -24,7 +24,7 @@ function logout(req,res){
 	if (req.session.username){
   		req.session.destroy(function(err){
   			if(err) throw err;
-  			res.json({success:true});
+  			res.sendFile('login.html', {root:__dirname});
   		})
   	}
   	else{
@@ -33,9 +33,11 @@ function logout(req,res){
 }
 
 function login(req, res) {
-	console.log("loginFunction line 32 called");
-	if(req.body.username == 'admin' && req.body.password == 'password'){
-  		req.session.username = req.body.username;
+	var username = req.body.username;
+	var password = req.body.password;
+	console.log(username + " " + password);
+	if(username == 'admin' && password == 'password'){
+  		req.session.username = username;
   		req.session.views = 2;
   		res.json({success:true});
   	}
