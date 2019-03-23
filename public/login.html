@@ -24,7 +24,7 @@
   	
   	
   	<div class="container">
-		<form class="form-group col-md-4 col-md-offset-4">
+		<form class="form-group col-md-4 col-md-offset-4" method="post">
 			<center><h2>Login</h2></center><br>
 			<input type="text" id="username" placeholder="username" name="username" class="form-control" required><br>
 			<input type="password"  id="password" placeholder="Password" name="pwd" class="form-control" required><br>
@@ -37,6 +37,7 @@
 	<script>
 		function login(){
 			console.log("line 39 file: login.html");
+			event.preventDefault();
 		// 	var username = $("#username").val();
 		// var password = $("#password").val();
 
