@@ -10,8 +10,8 @@ router.get('/topics', getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
 
-router.post('/logout', logout)
-router.post('/login', login)
+router.post('/logout', logout);
+router.post('/login', login);
 
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
