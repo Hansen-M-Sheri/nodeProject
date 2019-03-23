@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-onst { Pool } = require('pg');
+const { Pool } = require('pg');
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
 //Middle ware is specific to this router
