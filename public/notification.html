@@ -43,6 +43,7 @@
 
 		function displayDropDownTopics(topics){
 			var select = document.getElementById('select');
+			console.log("select = " + select);
 			for(var i = 0; i < topics.length; i++){
 				var option = document.createElement('option');
 				option.value = topics[i];
