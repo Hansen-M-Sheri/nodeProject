@@ -167,7 +167,7 @@
 			success: function(result){
 				console.log("line 169 : " + result);
 				var data = JSON.parse(result);
-				var book = result[0].book;
+				var book = data[0].book;
 				var chapter = data[0].chapter;
 				var verse = data[0].verse;
 				
