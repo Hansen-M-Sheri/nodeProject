@@ -24,12 +24,34 @@
   	
   	
   	<div class="container">
-		<form class="form-group col-md-4 col-md-offset-4"action="includes/login_inc.php" method="POST" >
+		<form class="form-group col-md-4 col-md-offset-4">
 			<center><h2>Login</h2></center><br>
-			<input type="text" placeholder="Email" name="email" class="form-control" required><br>
-			<input type="password" placeholder="Password" name="pwd" class="form-control" required><br>
-			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="/login">
+			<input type="text" id="username" placeholder="username" name="username" class="form-control" required><br>
+			<input type="password"  id="password" placeholder="Password" name="pwd" class="form-control" required><br>
+			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="login()">
 		</form>	
+		<div id="status"></div>
 	</div>
+
+	<script>
+		function login(){
+			console.log("login function called");
+			var username = $("#username").val();
+		var password = $("#password").val();
+
+		var params = {
+			username: username,
+			password: password
+		};
+
+		$.post("/login", params, function(result) {
+			if (result && result.success) {
+				$("#status").text("Successfully logged in.");
+			} else {
+				$("#status").text("Error logging in.");
+			}
+		});
+		}
+	</script>
 </body>
 </html>

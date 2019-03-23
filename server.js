@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-var bodyParser = require('body-parser');
-var sessions = require('express-session');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 
 var session; //global
 
@@ -16,125 +16,21 @@ const pool = new Pool({connectionString: connectionString});
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(session({
+  	name: 'server-session-cookie-id',
+  	secret: 'my secret is secret',
+  	saveUnititialized: true,
+  	resave: true,
+  	store: new FileStore()
+  }))
+app.use(require('./routes'));
 
- // app.use(session({
- // 	secret:'9834lw84oi*#&$#@)#odoinIDLKNC*#&'
- // }))
-
-app.get('/getUser', getUser);
-app.get('/topics', getAllTopics);
-app.get('/getCountScriptures', getCountScriptures);
-app.get('/getScriptureByID', getScriptureByID);
-
-// app.get('/getUser', function(req, res){
-// 	res.send("WHEEE");
-// });
-app.get('/login', function(req, resp){
-	resp.sendFile('login.html', {root:__dirname});
-})
-app.post('/login', function(req, resp){
-	resp.end(JSON.stringify(req.body));
-	if(req.body.email == 'true'){
-		session.id = req.body.email;
-	}
-})
-
-app.get('/notification', function(req, resp){
-	resp.sendFile('notification.html', {root:__dirname});
-})
 
 // Start the server running
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-function getUser(req, res){
-	console.log("Getting user info");
-
-	const id = req.query.id;
-	console.log(id);
-	const sql = 'SELECT * FROM scripture.user WHERE id = $1::int';
-	const params = [id];
-
-	pool.query(sql, params, function(err, result){
-		if (err) {
-			console.log("Error in query: " + err);
-			callback(err, null);
-		}
-
-		console.log("Found result: " + JSON.stringify(result.rows));
-		var json = JSON.stringify(result.rows);
-		res.status(200).send(json);
-	})
-}
-
-function getAllTopics(req, res){
-	console.log("Getting all topics");
-
-	const sql = 'SELECT name FROM scripture.topic;';
-
-	pool.query(sql, function(err, result){
-		if (err) {
-			console.log("Error in query: " + err);
-			callback(err, null);
-		}
-
-		console.log("Found result: " + JSON.stringify(result.rows));
-		var json = JSON.stringify(result.rows);
-		res.status(200).send(json);
-	})
-}
-//Get topic by id
-function getReferencesByTopic(req, res){
-	console.log("Getting all references by topic with id: " + id);
-
-	const sql = 'SELECT name FROM scripture.topic;';
-
-	pool.query(sql, function(err, result){
-		if (err) {
-			console.log("Error in query: " + err);
-			callback(err, null);
-		}
-
-		console.log("Found result: " + JSON.stringify(result.rows));
-		var json = JSON.stringify(result.rows);
-		res.status(200).send(json);
-	})
-}
-
-function getCountScriptures(req, res){
-	console.log("Getting total number of scriptures in db");
-
-	const sql = 'SELECT COUNT(*) FROM scripture.scripture;';
-
-	pool.query(sql, function(err, result){
-		if (err) {
-			console.log("Error in query: " + err);
-			callback(err, null);
-		}
-
-		console.log("Found result: " + JSON.stringify(result.rows));
-		var json = JSON.stringify(result.rows);
-		res.status(200).send(json);
-	})
-}
-
-function getScriptureByID(req, res){
-	console.log("Getting info for scripture id: " + req.query.id);
-	var id = req.query.id;
-	const sql = 'SELECT * FROM scripture.scripture WHERE id ='+id;
-
-	pool.query(sql, function(err, result){
-		if (err) {
-			console.log("Error in query: " + err);
-			callback(err, null);
-		}
-
-		console.log("Found result: " + JSON.stringify(result.rows));
-		var json = JSON.stringify(result.rows);
-		res.status(200).send(json);
-	})
-}
 
