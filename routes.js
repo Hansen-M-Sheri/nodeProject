@@ -9,7 +9,7 @@ const pool = new Pool({connectionString: connectionString});
 //home page route
 router.get('/', (req, res) => res.sendFile('public/login.html', {root:__dirname}));
 router.get('/getUser', getUser);
-router.get('/topics', getAllTopics);
+router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
 
@@ -19,6 +19,17 @@ router.post('/login', login);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
+
+function isAuthenticated(req, res, next){
+	console.log(req.session.username);
+	console.log(req.session.id);
+	if(req.session.username != null && req.session.id != null){
+		return next();
+	} 
+	else {
+		res.redirect('/');
+	}
+}
 
 function logout(req,res){
 	if (req.session.username){

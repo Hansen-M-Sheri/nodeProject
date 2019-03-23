@@ -29,6 +29,7 @@
 		window.addEventListener('load', getTopics);
 
 		function getTopics(){
+			//check for session
 					$.ajax({
 			type: "GET",
 			url: "/topics",
