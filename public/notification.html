@@ -46,7 +46,7 @@
 			console.log("select = " + select);
 			for(var i = 0; i < topics.length; i++){
 				var option = document.createElement('option');
-				option.value = topics[i];
+				option.value = topics[i].name;
 				option.innerHTML = topics[i];
 				select.appendChild(option);
 			}
