@@ -29,13 +29,14 @@
 			<input type="text" id="username" placeholder="username" name="username" class="form-control" required><br>
 			<input type="password"  id="password" placeholder="Password" name="pwd" class="form-control" required><br>
 			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="login()">
+			<div id="status"></div>
 		</form>	
-		<div id="status"></div>
+		
 	</div>
 
 	<script>
 		function login(){
-			console.log("login function called");
+			console.log("line 39 file: login.html");
 			var username = $("#username").val();
 		var password = $("#password").val();
 
