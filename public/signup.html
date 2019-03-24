@@ -37,14 +37,14 @@
 		function signup() {
 			var username = $("#username").val();
 			var password = $("#pwd").val();
-			var phone = $("#usertel").valu();
+			var phone = $("#usertel").val();
 
 			var params = {
 				username: username,
 				password: password,
 				phone: phone
 			};
-			console.log("params" + params);
+			// console.log("params" + params);
 			$.post("/signup", params, function(result) {
 				if (result && result.success) {
 					$("#status").text("Successfully logged in.");
