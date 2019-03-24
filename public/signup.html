@@ -28,7 +28,7 @@
 			<center><h2>Signup</h2></center><br>
 			<input type="text" placeholder="username" name="username" class="form-control" required><br>
 			<input type="password" placeholder="Password" name="pwd" class="form-control" required><br>
-			<input type="tel" name="usertel" placeholder="0001110000" maxlength="10" required>
+			<input type="text" name="phone" placeholder="0001110000" maxlength="10" required>
 			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="signup()">
 		</form>	
 	</div>
@@ -37,7 +37,7 @@
 		function signup() {
 			var username = $("#username").val();
 			var password = $("#pwd").val();
-			var phone = $("#usertel").val();
+			var phone = $("#phone").val();
 
 			var params = {
 				username: username,
@@ -45,13 +45,13 @@
 				phone: phone
 			};
 			// console.log("params" + params);
-			$.post("/signup", params, function(result) {
-				if (result && result.success) {
-					$("#status").text("Successfully logged in.");
-				} else {
-					$("#status").text("Error logging in.");
-				}
-			});
+			// $.post("/signup", params, function(result) {
+			// 	if (result && result.success) {
+			// 		$("#status").text("Successfully logged in.");
+			// 	} else {
+			// 		$("#status").text("Error logging in.");
+			// 	}
+			// });
 		}
 	</script>
 </body>
