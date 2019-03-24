@@ -48,7 +48,7 @@ function signup(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var telephone = req.body.telephone;
-
+console.log("Params: "+ username + password + telephone);
 	var hashedPassword = bcrypt.hashSync(password);
 	var sql = 'INSERT INTO scripture.user(username, password, phone) VALUES ($1::text, $2::text, $3::text)';
 	var params = [username, hashedPassword, telephone];
