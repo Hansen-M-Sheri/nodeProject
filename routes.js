@@ -47,7 +47,7 @@ function logout(req,res){
 function signup(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
-	var phone = req.body.phone;
+	var phone = '2087618466';
 // console.log("Params: "+ username + password + telephone);
 	var hashedPassword = bcrypt.hashSync(password);
 	var sql = 'INSERT INTO scripture.user(username, password, phone) VALUES ($1, $2, $3)';
