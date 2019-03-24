@@ -37,12 +37,12 @@
 		function signup() {
 			var username = $("#username").val();
 			var password = $("#pwd").val();
-			var telephone = $("#usertel").valu();
+			var phone = $("#usertel").valu();
 
 			var params = {
 				username: username,
 				password: password,
-				telephone: telephone
+				phone: phone
 			};
 
 			$.post("/signup", params, function(result) {
