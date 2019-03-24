@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcryp-nodejs');
+var bcrypt = require('bcrypt-nodejs');
 
 const { Pool } = require('pg');
 const connectionString = process.env.DATABASE_URL;
