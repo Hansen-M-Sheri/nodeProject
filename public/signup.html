@@ -44,7 +44,7 @@
 				password: password,
 				phone: phone
 			};
-			console.log("params" + params);
+			console.log("params" + phone);
 			$.post("/signup", params, function(result) {
 				if (result && result.success) {
 					$("#status").text("Successfully logged in.");
