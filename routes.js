@@ -50,7 +50,7 @@ function signup(req, res){
 	var telephone = req.body.telephone;
 
 	var hashedPassword = bcrypt.hashSync(password);
-	var sql = 'INSERT INTO scripture.scripture(username, password, phone) VALUES $1::text, $2::text, $3::text';
+	var sql = 'INSERT INTO scripture.scripture(username, password, phone) VALUES ($1::text, $2::text, $3::text)';
 	var params = [username, hashedPassword, telephone];
 	pool.query(sql, params, function(err, data){
 		if(err){
