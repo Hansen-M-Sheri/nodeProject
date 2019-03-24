@@ -45,13 +45,13 @@
 				phone: phone
 			};
 			console.log("params" + params);
-			// $.post("/signup", params, function(result) {
-			// 	if (result && result.success) {
-			// 		$("#status").text("Successfully logged in.");
-			// 	} else {
-			// 		$("#status").text("Error logging in.");
-			// 	}
-			// });
+			$.post("/signup", params, function(result) {
+				if (result && result.success) {
+					$("#status").text("Successfully logged in.");
+				} else {
+					$("#status").text("Error logging in.");
+				}
+			});
 		}
 	</script>
 </body>
