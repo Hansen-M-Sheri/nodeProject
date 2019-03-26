@@ -65,6 +65,7 @@ function signup(req, res){
 function login(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
+	console.log("LOGIN():68 username/password:" + username + " " + password);
 	var sql = 'SELECT id, username, password FROM scripture.user WHERE username=$1::text';
 	var params = [username];
 	pool.query(sql, params, function (err, data){
