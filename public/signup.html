@@ -47,9 +47,10 @@
 			console.log("params" + phone);
 			$.post("/signup", params, function(result) {
 				if (result && result.success) {
-					$("#status").text("Successfully logged in.");
+					$("#status").text("Successfully signed up, logging in.");
+					window.location.href = "scriptureOfDay.html";
 				} else {
-					$("#status").text("Error logging in.");
+					$("#status").text("Error with signup in.");
 				}
 			});
 		}
