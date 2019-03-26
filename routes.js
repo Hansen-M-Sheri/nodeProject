@@ -52,12 +52,13 @@ function signup(req, res){
 	var hashedPassword = bcrypt.hashSync(password);
 	var sql = 'INSERT INTO scripture.user(username, password, phone) VALUES ($1, $2, $3)';
 	var params = [username, hashedPassword, phone];
-	pool.query(sql, params, function(err, data){
+	pool.query(sql, params, function(err, result){
 		if(err){
 			res.status(400).send("Error: " + err);
+			callback(err, null);
 		}
 		else{
-			res.status(204).send();
+			res.status(204).send({success: true});
 		}
 	})
 }
