@@ -68,28 +68,29 @@ function login(req, res) {
 	console.log("LOGIN():68 username/password:" + username + " " + password);
 	var sql = 'SELECT id, username, password FROM scripture.user WHERE username=$1::text';
 	var params = [username];
-	pool.query(sql, params, function (err, data){
-		if(err){
-			//authentication error
-			res.status(400).send("An unkown error occurred");
-		}
-		else {
-			bcrypt.compare(password, data.rows[0]['password'], function(err, result){
-				if(!result){
-					//issue with password or username
-					res.status(401).send("The username or password is incorrect");
-				}
-				else {
-					var id = data.rows[0]['id'];
-					var username = data.rows[0]['username'];
-					//begin session and return data
-					req.session.userid = id;
-					req.session.username = username;
-					res.status(200).send({id: id, username: username, success: true});
-				}
-			})
-		}
-	}) 
+	console.log(data.rows[0]['username']);
+	// pool.query(sql, params, function (err, data){
+	// 	if(err){
+	// 		//authentication error
+	// 		res.status(400).send("An unkown error occurred");
+	// 	}
+	// 	else {
+	// 		bcrypt.compare(password, data.rows[0]['password'], function(err, result){
+	// 			if(!result){
+	// 				//issue with password or username
+	// 				res.status(401).send("The username or password is incorrect");
+	// 			}
+	// 			else {
+	// 				var id = data.rows[0]['id'];
+	// 				var username = data.rows[0]['username'];
+	// 				//begin session and return data
+	// 				req.session.userid = id;
+	// 				req.session.username = username;
+	// 				res.status(200).send({id: id, username: username, success: true});
+	// 			}
+	// 		})
+	// 	}
+	// }) 
 	// console.log(username + " " + password);
 	// if(username == 'admin' && password == 'password'){
  //  		req.session.username = username;
