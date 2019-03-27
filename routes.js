@@ -13,13 +13,15 @@ router.get('/getUser', getUser);
 router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
+router.get('/notification', function(req, resp){
+	resp.sendFile('notification.html', {root:__dirname});
+})
 
 router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
-router.get('/notification', function(req, resp){
-	resp.sendFile('notification.html', {root:__dirname});
-})
+
+
 
 function isAuthenticated(req, res, next){
 	console.log(req.session.username);

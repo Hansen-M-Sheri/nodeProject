@@ -14,16 +14,11 @@
 		<h4>Originally my plan was to set a notification which would select a topic and frequency that a user would have a scripture texted to them from that topic.  Since the free version of Heroku will not allow for cronjobs which would be required for this, I am simulating th ability for notifications in the following way. This page will show a button for every topic you have entered.  If you click that button, a scripture from that topic will be sent one time to your phone by SMS thru twilio</h4>
 	</div>
 <div class="container">
-		<form class="form-group col-md-4 col-md-offset-4"action="/notification" method="POST" >
-			<center><h2>Notification Creation</h2></center><br>
-			<!-- <select name="topics" id="select">
-				
-			</select><br>-->
+		<!-- <form class="form-group col-md-4 col-md-offset-4" method="POST" > -->
+			<center><h2>Send a Scripture by Topic to your phone</h2></center><br>
 			<div id="buttons">
 			</div>
-			
-			<!-- <input type="submit" name="createNotification" class="btn btn-primary btn-block" onclick="login"> -->
-		</form>	
+		<!-- </form>	 -->
 	</div>
 
 	<script>
@@ -42,20 +37,18 @@
 
 		})
 		}
+
+		//method to send notification by text of random scripture
 		function notify(){
 			this.innerHTML = "Text is sent";
 			this.className += ' dynamic-success';
 		}
+
+		//display buttons that are options to select for sending text
 		function displayDropDownTopics(topics){
 			var buttons = document.getElementById('buttons');
 			
 			for(var i = 0; i < topics.length; i++){
-				// var option = document.createElement('option');
-				// option.value = topics[i].name;
-				// option.innerHTML = topics[i].name;
-				// option.value = "test";
-				// option.innerHTML = "This is a test";
-				// select.appendChild(option);
 				var button = document.createElement('button');
 				button.className="btn btn-primary";
 				button.id=topics[i].name; 
