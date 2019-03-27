@@ -28,7 +28,7 @@
 
 	<script>
 		window.addEventListener('load', getTopics);
-
+		
 		function getTopics(){
 			//check for session
 					$.ajax({
@@ -38,13 +38,14 @@
 				var topics = JSON.parse(result);
 				console.log(topics[0].name);
 				displayDropDownTopics(topics);
-				// $("#results").html(json[0].name);
-				
 			}
 
 		})
 		}
-
+		function notify(){
+			this.innerHTML = "Text is sent";
+			this.className += ' dynamic-success';
+		}
 		function displayDropDownTopics(topics){
 			var buttons = document.getElementById('buttons');
 			
@@ -60,8 +61,11 @@
 				button.id=topics[i].name; 
 				button.innerHTML = topics[i].name;
 				buttons.appendChild(button);
+
+				button.onclick = notify;
 			}
 		}
+
 	</script>
 </body>
 </html>
