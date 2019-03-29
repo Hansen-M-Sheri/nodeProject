@@ -38,8 +38,23 @@
 		})
 		}
 
+		function getTopicID(name){
+			//check for session
+					$.ajax({
+			type: "GET",
+			url: "/getTopicIDByName?name="+name,
+			success: function(result){
+				var topics = JSON.parse(result);
+				// console.log("topics: "+topics[0] + " " + topics[1]);
+				displayDropDownTopics(topics);
+			}
+
+		})
+		}
+
 		//method to send notification by text of random scripture
-		function notify(topicID){
+		function notify(topicName){
+			//get topicID
 			//get count of scriptures
 			var count = getScriptureCountByTopic(topicID);
 			this.innerHTML = count;
@@ -51,14 +66,14 @@
 			var buttons = document.getElementById('buttons');
 			
 			//divide topics by 2 because we get name and id for each
-			for(var i = 0; i < topics.length/2; i++){
+			for(var i = 0; i < topics.length; i++){
 				var button = document.createElement('button');
 				button.className="btn btn-primary";
 				button.id=topics[i].name; 
 				button.innerHTML = topics[i].name;
 				buttons.appendChild(button);
-				console.log(topics[i].id);
-				button.onclick = notify(topics[i].id);
+				// console.log(topics[i].id);
+				button.onclick = notify(topics[i].name);
 			}
 		}
 
