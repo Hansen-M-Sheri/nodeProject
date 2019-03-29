@@ -57,14 +57,14 @@
 				button.innerHTML = topics[i].name;
 				buttons.appendChild(button);
 				console.log(topics[i].id);
-				button.onclick = notify(topics[i].id );
+				button.onclick = notify(topics[i].id);
 			}
 		}
 
 		function getScriptureCountByTopic(topicID){
 			$.ajax({
 			type: "GET",
-			url: "/getNumScripturesByTopicID",
+			url: "/getNumScripturesByTopicID?id="+topicID,
 			success: function(result){
 				var topics = JSON.parse(result);
 				console.log(topics[0].name);
