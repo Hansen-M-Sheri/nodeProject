@@ -215,9 +215,9 @@ function getNumScripturesByTopicID(req, res){
 			// callback(err, null);
 		}
 
-		console.log("Found result: " + JSON.stringify(result));
-		var json = JSON.stringify(result.rows);
-		res.status(200).send(json);
+		console.log("Found result: " + result);
+		// var json = JSON.stringify(result.rows);
+		res.status(200).send(result);
 	})
 }
 function getRandomScriptureIDByTopicID(req, res){
