@@ -44,7 +44,7 @@
 			type: "GET",
 			url: "/getTopicIDByName?name="+name,
 			success: function(result){
-				var topics = JSON.parse(result);
+				var id = JSON.parse(result);
 				// console.log("topics: "+topics[0] + " " + topics[1]);
 				displayDropDownTopics(topics);
 			}
@@ -55,8 +55,9 @@
 		//method to send notification by text of random scripture
 		function notify(topicName){
 			//get topicID
+			var id = getTopicID(topicName);
 			//get count of scriptures
-			var count = getScriptureCountByTopic(topicID);
+			var count = getScriptureCountByTopic(id);
 			this.innerHTML = count;
 			this.className += ' dynamic-success';
 		}
