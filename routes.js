@@ -25,7 +25,7 @@ router.get('/testTwilio', function(req, res){
 		body: 'Test twilio message'
 	}, function(err, data){
 		if(err){ console.log(err);}
-		console.log(data);
+		// console.log(data);
 	})
 	.then(message => console.log("twilio msg: " + message.sid));
 })
