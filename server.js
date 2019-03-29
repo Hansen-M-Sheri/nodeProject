@@ -3,7 +3,7 @@ const app = express();
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 var expressValidator = require('express-validator');
-var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO.TOKEN);
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
 var session; //global
 
