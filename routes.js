@@ -17,7 +17,7 @@ router.get('/getScriptureByID', getScriptureByID);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
-router.get('testtwilio', function(req, res){
+router.get('/testTwilio', function(req, res){
 	client.sendMessage({
 		to: '+12087618466',
 		from: '+12083142782',
