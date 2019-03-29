@@ -18,7 +18,8 @@ router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
 router.get('/testTwilio', function(req, res){
-	client.sendMessage({
+	client.messages
+	.create({
 		to: '+12087618466',
 		from: '+12083142782',
 		body: 'Test twilio message'
@@ -26,6 +27,7 @@ router.get('/testTwilio', function(req, res){
 		if(err){ console.log(err);}
 		console.log(data);
 	})
+	.then(message => console.log("twilio msg: " + message.sid));
 })
 router.post('/logout', logout);
 router.post('/login', login);
