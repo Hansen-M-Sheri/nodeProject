@@ -5,7 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 const { Pool } = require('pg');
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
-var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+var client = require('twilio')(process.env.TWILIO_SID);
 //Middle ware is specific to this router
 
 //home page route
