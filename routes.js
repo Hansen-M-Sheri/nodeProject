@@ -142,7 +142,7 @@ function getUser(req, res){
 function getAllTopics(req, res){
 	console.log("Getting all topics");
 
-	const sql = 'SELECT name FROM scripture.topic;';
+	const sql = 'SELECT name, id FROM scripture.topic;';
 
 	pool.query(sql, function(err, result){
 		if (err) {
@@ -220,8 +220,12 @@ function getNumScripturesByTopicID(req, res){
 		res.status(200).send(json);
 	})
 }
+
 function getRandomScriptureIDByTopicID(req, res){
+	//get # of scriptures in Topic
 	var id = req.query.id;
+	var maxScriptures = getNumScripturesByTopicID()
+	var random = getRandomInt(0, )
 	const sql = "";
 }
 module.exports = router;
