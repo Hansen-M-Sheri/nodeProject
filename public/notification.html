@@ -46,8 +46,8 @@
 			success: function(result){
 				var id = JSON.parse(result);
 				// console.log("topics: "+topics[0] + " " + topics[1]);
-				displayDropDownTopics(topics);
-			}
+				return(result);
+				}
 
 		})
 		}
@@ -66,7 +66,6 @@
 		function displayDropDownTopics(topics){
 			var buttons = document.getElementById('buttons');
 			
-			//divide topics by 2 because we get name and id for each
 			for(var i = 0; i < topics.length; i++){
 				var button = document.createElement('button');
 				button.className="btn btn-primary";
@@ -83,9 +82,8 @@
 			type: "GET",
 			url: "/getNumScripturesByTopicID?id="+topicID,
 			success: function(result){
-				var topics = JSON.parse(result);
-				console.log(topics[0].name);
-				displayDropDownTopics(topics);
+				var count = JSON.parse(result);
+				return(count);
 			}
 
 		})
