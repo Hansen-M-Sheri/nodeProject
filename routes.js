@@ -14,10 +14,11 @@ router.get('/getUser', getUser);
 router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
+router.get('getNumScripturesByTopicID', getNumScripturesByTopicID);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
-router.get('/testTwilio', function(req, res){
+router.get('/twilio', function(req, res){
 	client.messages
 	.create({
 		to: '+12087618466',
@@ -205,5 +206,22 @@ function getScriptureByID(req, res){
 		res.status(200).send(json);
 	})
 }
+function getNumScripturesByTopicID(req, res){
+	var id = req.query.id;
+	const sql = "SELECT COUNT(*) FROM scripture.scripturextopic WHERE topicid ="+ id;
+	pool.query(sql, function(err, result){
+		if (err) {
+			console.log("Error in query: " + err);
+			callback(err, null);
+		}
 
+		console.log("Found result: " + JSON.stringify(result.rows));
+		var json = JSON.stringify(result.rows);
+		res.status(200).send(json);
+	})
+}
+function getRandomScriptureIDByTopicID(req, res){
+	var id = req.query.id;
+	const sql = ""
+}
 module.exports = router;
