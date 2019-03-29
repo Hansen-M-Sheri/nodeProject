@@ -22,7 +22,7 @@ router.get('/testTwilio', function(req, res){
 		to: '+12087618466',
 		from: '+12083142782',
 		body: 'Test twilio message'
-	} function(err, data){
+	}, function(err, data){
 		if(err){ console.log(err);}
 		console.log(data);
 	})
