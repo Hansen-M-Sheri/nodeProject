@@ -15,6 +15,7 @@ router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
 router.get('/getNumScripturesByTopicID', getNumScripturesByTopicID);
+router.get('/getTopicIDByName', getTopicIDByName);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
@@ -138,11 +139,27 @@ function getUser(req, res){
 		res.status(200).send(json);
 	})
 }
+function getTopicIDByName(req, res){
+	console.log("Get id of topic");
+	var name = req.query.name;
+	const sql = 'SELECT id FROM scripture.topic WHERE name =' + name;
+	pool.query(sql, function(err, result){
+		if (err) {
+			console.log("Error in query: " + err);
+			callback(err, null);
+		}
+
+		console.log("Found result: " + JSON.stringify(result.rows));
+		var json = JSON.stringify(result.rows);
+		res.status(200).send(json);
+	})
+
+}
 
 function getAllTopics(req, res){
 	console.log("Getting all topics");
 
-	const sql = 'SELECT name, id FROM scripture.topic;';
+	const sql = 'SELECT name FROM scripture.topic;';
 
 	pool.query(sql, function(err, result){
 		if (err) {
