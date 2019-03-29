@@ -5,6 +5,7 @@ var bcrypt = require('bcrypt-nodejs');
 const { Pool } = require('pg');
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({connectionString: connectionString});
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO.TOKEN);
 //Middle ware is specific to this router
 
 //home page route
@@ -16,7 +17,16 @@ router.get('/getScriptureByID', getScriptureByID);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
-
+router.get('testtwilio', function(req, res){
+	client.sendMessage({
+		to: '+12087618466',
+		from: '+12083142782',
+		body: 'Test twilio message'
+	} function(err, data){
+		if(err){ console.log(err);}
+		console.log(data);
+	})
+})
 router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
