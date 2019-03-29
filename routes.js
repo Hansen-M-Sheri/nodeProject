@@ -14,7 +14,7 @@ router.get('/getUser', getUser);
 router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
-router.get('getNumScripturesByTopicID', getNumScripturesByTopicID);
+router.get('/getNumScripturesByTopicID', getNumScripturesByTopicID);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
