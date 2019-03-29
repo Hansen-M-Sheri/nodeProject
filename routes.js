@@ -26,8 +26,9 @@ router.get('/testTwilio', function(req, res){
 	}, function(err, data){
 		if(err){ console.log(err);}
 		// console.log(data);
-	})
-	.then(message => console.log("twilio msg: " + message.sid));
+	});
+	// .then(message => console.log("twilio msg: " + message.sid));
+	res.redirect('notification.html');
 })
 router.post('/logout', logout);
 router.post('/login', login);
