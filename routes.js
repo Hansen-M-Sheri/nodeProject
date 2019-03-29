@@ -212,7 +212,7 @@ function getNumScripturesByTopicID(req, res){
 	pool.query(sql, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
