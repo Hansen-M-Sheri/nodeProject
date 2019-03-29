@@ -39,8 +39,10 @@
 		}
 
 		//method to send notification by text of random scripture
-		function notify(){
-			this.innerHTML = "Text is sent";
+		function notify(topicID){
+			//get count of scriptures
+			var count = getScriptureCountByTopic(topicID);
+			this.innerHTML = count;
 			this.className += ' dynamic-success';
 		}
 
@@ -55,10 +57,27 @@
 				button.innerHTML = topics[i].name;
 				buttons.appendChild(button);
 
-				button.onclick = notify;
+				button.onclick = notify(topics[i].id );
 			}
 		}
 
+		function getScriptureCountByTopic(topicID){
+			$.ajax({
+			type: "GET",
+			url: "/getNumScripturesByTopicID",
+			success: function(result){
+				var topics = JSON.parse(result);
+				console.log(topics[0].name);
+				displayDropDownTopics(topics);
+			}
+
+		})
+		}
+		function getRandomInt(min, max) {
+		  min = Math.ceil(min);
+		  max = Math.floor(max);
+		  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+		}
 	</script>
 </body>
 </html>
