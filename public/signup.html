@@ -24,13 +24,14 @@
   	
   	
   	<div class="container">
-		<form class="form-group col-md-4 col-md-offset-4"  method="POST" >
+		<div class="form-group col-md-4 col-md-offset-4" >
 			<center><h2>Signup</h2></center><br>
 			<input type="text" id="username" placeholder="username" name="username" class="form-control" required><br>
 			<input type="password" id="pwd" placeholder="Password" name="pwd" class="form-control" required><br>
 			<input type="text" id="phone" name="phone" placeholder="0001110000" maxlength="10" required>
 			<input type="button" name="submitLogin" value="Submit Login"class="btn btn-primary btn-block" onclick="signup()">
-		</form>	
+		</div>	
+		<div id="status"></div>
 	</div>
 
 	<script>
