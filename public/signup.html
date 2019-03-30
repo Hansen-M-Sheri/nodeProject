@@ -46,7 +46,7 @@
 			};
 			console.log("params" + phone);
 			$.post("/signup", params, function(result) {
-				console.log("Result: " + result);
+				console.log("Result.success: " + result.success);
 				if (result && result.success) {
 					$("#status").text("Successfully signed up, logging in.");
 					window.location.href = "scriptureOfDay.html";
