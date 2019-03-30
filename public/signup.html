@@ -35,6 +35,7 @@
 
 	<script>
 		function signup() {
+			even.preventDefault();
 			var username = $("#username").val();
 			var password = $("#pwd").val();
 			var phone = $("#phone").val();
@@ -46,7 +47,7 @@
 			};
 			console.log("params" + phone);
 			$.post("/signup", params, function(result) {
-				// console.log("Result.success: " + result.success);
+				console.log("resultLine50Signup: "+ result);
 				if (result && result.success) {
 					$("#status").text("Successfully signed up, logging in.");
 					window.location.href = "scriptureOfDay.html";
