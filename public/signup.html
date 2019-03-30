@@ -29,13 +29,13 @@
 			<input type="text" id="username" placeholder="username" name="username" class="form-control" required><br>
 			<input type="password" id="pwd" placeholder="Password" name="pwd" class="form-control" required><br>
 			<input type="text" id="phone" name="phone" placeholder="0001110000" maxlength="10" required>
-			<input type="button" name="submitLogin" class="btn btn-primary btn-block" onclick="signup()">
+			<input type="button" name="submitLogin" value="Submit Login"class="btn btn-primary btn-block" onclick="signup()">
 		</form>	
 	</div>
 
 	<script>
 		function signup() {
-			even.preventDefault();
+			event.preventDefault();
 			var username = $("#username").val();
 			var password = $("#pwd").val();
 			var phone = $("#phone").val();
