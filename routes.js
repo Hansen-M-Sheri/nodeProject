@@ -19,7 +19,16 @@ router.get('/getTopicIDByName', getTopicIDByName);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
-router.get('/twilio', function(req, res){
+router.get('/twilio', sendTwilioMsg);
+
+
+router.post('/logout', logout);
+router.post('/login', login);
+router.post('/signup', signup);
+
+
+
+function sendTwilioMsg(req, res){
 	client.messages
 	.create({
 		to: '+12087618466',
@@ -31,12 +40,7 @@ router.get('/twilio', function(req, res){
 	});
 	// .then(message => console.log("twilio msg: " + message.sid));
 	res.redirect('notification.html');
-})
-router.post('/logout', logout);
-router.post('/login', login);
-router.post('/signup', signup);
-
-
+}
 
 function isAuthenticated(req, res, next){
 	console.log(req.session.username);
@@ -70,6 +74,7 @@ function signup(req, res){
 	var sql = 'INSERT INTO scripture.user(username, password, phone) VALUES ($1, $2, $3)';
 	var params = [username, hashedPassword, phone];
 	pool.query(sql, params, function(err, result){
+		console.log(result);
 		if(err){
 			res.status(400).send("Error: " + err);
 		}
@@ -245,4 +250,6 @@ function getRandomScriptureIDByTopicID(req, res){
 	var random = getRandomInt(0, )
 	const sql = "";
 }
+
+
 module.exports = router;
