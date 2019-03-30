@@ -79,7 +79,7 @@ function signup(req, res){
 			res.status(400).send("Error: " + err);
 		}
 		else{
-			res.status(204).send({success: true});
+			res.status(204).send({success: true, result: result});
 		}
 	})
 }

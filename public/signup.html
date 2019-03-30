@@ -49,9 +49,11 @@
 			$.post("/signup", params, function(result) {
 				console.log("resultLine50Signup: "+ result);
 				if (result && result.success) {
+					console.log("resultLine52Signup: "+ result);
 					$("#status").text("Successfully signed up, logging in.");
 					window.location.href = "scriptureOfDay.html";
 				} else {
+					console.log("resultLine56Signup: "+ result);
 					$("#status").text("Error with signup in.");
 				}
 			});
