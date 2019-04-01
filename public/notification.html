@@ -38,42 +38,42 @@
 		})
 		}
 
-		function getTopicID(){
+		function getTopicID(name){
 			//check for session
 			return new Promise(function(resolve, reject){
 				console.log("getTopicID");
-				resolve();
-				// $.ajax({
-				// 	type: "GET",
-				// 	url: "/getTopicIDByName?name="+name,
-				// 	success: function(result){
-				// 		var id = JSON.parse(result);
-				// 		// console.log("topics: "+topics[0] + " " + topics[1]);
-				// 		return(result);
-				// 		}
+				// resolve();
+				$.ajax({
+					type: "GET",
+					url: "/getTopicIDByName?name="+name,
+					success: function(result){
+						var id = JSON.parse(result);
+						// console.log("topics: "+topics[0] + " " + topics[1]);
+						resolve(return(result));
+						} 
 
-				// 	})
+					})
 			});
 			
 		}
-		function getScriptureCountByTopic(){
+		function getScriptureCountByTopic(topicID){
 			return new Promise(function(resolve, reject){
-				console.log("getScriptureCountByTopic");
-				resolve();
+				console.log("getScriptureCountByTopic: id="+ result);
+				resolve(return 3);
 			});
 		}
 
-		function getRandomInt(){
+		function getRandomInt(count){
 			return new Promise(function(resolve, reject){
-				console.log("getRandomInt");
-				resolve();
+				console.log("getRandomInt with max = "+ count);
+				resolve(return 2);
 			});
 		}
 
-		function getScriptRefByID(){
+		function getScriptRefByID(id){
 			return new Promise(function(resolve, reject){
-				console.log("getScriptRefByID");
-				resolve();
+				console.log("getScriptRefByID: id = "+ id);
+				resolve(return "scripture");
 			});
 		}
 
@@ -84,25 +84,27 @@
 			});
 		}
 
-		function sendSMS(){
+		function sendSMS(msg, phone){
 			return new Promise(function(resolve, reject){
-				console.log("sendSMS");
+				console.log("sendSMS to phone: "+ phone);
+				console.log("sms msg: "+msg);
 				resolve();
 			});
 		}
-		function notify(){
+		function notify(topicName){
 			// 1. get topic id
 			// 2. get count of scriptures
 			// 3. get random number w/ max cnt of scriptures
 			// 4. get reference for that id in topic
 			// 5. get user phone
 			// 6. call twilio send reference as body
-			getTopicID()
-			.then(getScriptureCountByTopic)
-			.then(getRandomInt)
-			.then(getScriptRefByID)
-			.then(getUserPhone)
-			.then(sendSMS);
+			var phone = '208';
+			getTopicID(topicName(result))
+			.then(getScriptureCountByTopic(result))
+			.then(getRandomInt(result))
+			.then(getScriptRefByID(result))
+			// .then(getUserPhone(result)) //authenticate first
+			.then(sendSMS(result, phone));
 			
 		}
 		//method to send notification by text of random scripture
@@ -126,7 +128,7 @@
 				button.innerHTML = topics[i].name;
 				buttons.appendChild(button);
 				// console.log(topics[i].id);
-				button.onclick = notify();
+				button.onclick = notify(topic[i].name);
 			}
 		}
 
