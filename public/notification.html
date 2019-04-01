@@ -99,7 +99,7 @@
 			// 5. get user phone
 			// 6. call twilio send reference as body
 			var phone = '208';
-			getTopicID(topicName(result))
+			getTopicID(topicName())
 			.then(getScriptureCountByTopic(result))
 			.then(getRandomInt(result))
 			.then(getScriptRefByID(result))
