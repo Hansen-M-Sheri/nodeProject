@@ -49,7 +49,7 @@
 					success: function(result){
 						var id = JSON.parse(result);
 						// console.log("topics: "+topics[0] + " " + topics[1]);
-						resolve(return(result));
+						resolve(result);
 						} 
 
 					})
@@ -59,21 +59,21 @@
 		function getScriptureCountByTopic(topicID){
 			return new Promise(function(resolve, reject){
 				console.log("getScriptureCountByTopic: id="+ result);
-				resolve(return 3);
+				resolve(3);
 			});
 		}
 
 		function getRandomInt(count){
 			return new Promise(function(resolve, reject){
 				console.log("getRandomInt with max = "+ count);
-				resolve(return 2);
+				resolve(2);
 			});
 		}
 
 		function getScriptRefByID(id){
 			return new Promise(function(resolve, reject){
 				console.log("getScriptRefByID: id = "+ id);
-				resolve(return "scripture");
+				resolve("scripture");
 			});
 		}
 
