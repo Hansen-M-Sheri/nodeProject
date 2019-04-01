@@ -100,11 +100,11 @@
 			// 6. call twilio send reference as body
 			var phone = '208';
 			getTopicID(topicName)
-			.then(getScriptureCountByTopic(result))
-			.then(getRandomInt(result))
-			.then(getScriptRefByID(result))
+			.then(getScriptureCountByTopic)
+			.then(getRandomInt)
+			.then(getScriptRefByID)
 			// .then(getUserPhone(result)) //authenticate first
-			.then(sendSMS(result, phone));
+			.then(sendSMS(phone));
 			
 		}
 		//method to send notification by text of random scripture
