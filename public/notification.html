@@ -38,29 +38,77 @@
 		})
 		}
 
-		function getTopicID(name){
+		function getTopicID(){
 			//check for session
-					$.ajax({
-			type: "GET",
-			url: "/getTopicIDByName?name="+name,
-			success: function(result){
-				var id = JSON.parse(result);
-				// console.log("topics: "+topics[0] + " " + topics[1]);
-				return(result);
-				}
+			return new Promise(function(resolve, reject){
+				console.log("getTopicID");
+				resolve();
+				// $.ajax({
+				// 	type: "GET",
+				// 	url: "/getTopicIDByName?name="+name,
+				// 	success: function(result){
+				// 		var id = JSON.parse(result);
+				// 		// console.log("topics: "+topics[0] + " " + topics[1]);
+				// 		return(result);
+				// 		}
 
-		})
+				// 	})
+			});
+			
+		}
+		function getScriptureCountByTopic(){
+			return new Promise(function(resolve, reject){
+				console.log("getScriptureCountByTopic");
+				resolve();
 		}
 
+		function getRandomInt(){
+			return new Promise(function(resolve, reject){
+				console.log("getRandomInt");
+				resolve();
+		}
+
+		function getScriptRefByID(){
+			return new Promise(function(resolve, reject){
+				console.log("getScriptRefByID");
+				resolve();
+		}
+
+		function getUserPhone() {
+			return new Promise(function(resolve, reject){
+				console.log("getUserPhone");
+				resolve();
+		}
+
+		function sendSMS(){
+			return new Promise(function(resolve, reject){
+				console.log("sendSMS");
+				resolve();
+		}
+		function notify(){
+			// 1. get topic id
+			// 2. get count of scriptures
+			// 3. get random number w/ max cnt of scriptures
+			// 4. get reference for that id in topic
+			// 5. get user phone
+			// 6. call twilio send reference as body
+			getTopicId()
+			.then(getScriptureCountByTopic)
+			.then(getRandomInt)
+			.then(getScriptRefByID)
+			.then(getUserPhone)
+			.then(sendSMS);
+			
+		}
 		//method to send notification by text of random scripture
-		function notify(topicName){
-			//get topicID
-			var id = getTopicID(topicName);
-			//get count of scriptures
-			var count = getScriptureCountByTopic(id);
-			this.innerHTML = count;
-			this.className += ' dynamic-success';
-		}
+		// function notify(topicName, getTopicID, getScriptureCountByTopic, getRandomInt, getScriptRefByID ){
+		// 	//get topicID
+		// 	var id = getTopicID(topicName, );
+		// 	//get count of scriptures
+		// 	var count = getScriptureCountByTopic(id);
+		// 	// this.innerHTML = count;
+		// 	// this.className += ' dynamic-success';
+		// }
 
 		//display buttons that are options to select for sending text
 		function displayDropDownTopics(topics){
@@ -73,26 +121,27 @@
 				button.innerHTML = topics[i].name;
 				buttons.appendChild(button);
 				// console.log(topics[i].id);
-				button.onclick = notify(topics[i].name);
+				button.onclick = notify(topics[i].name, getTopicID, getScriptureCountByTopic, getRandomInt, getScriptRefByID);
 			}
 		}
 
-		function getScriptureCountByTopic(topicID){
-			$.ajax({
-			type: "GET",
-			url: "/getNumScripturesByTopicID?id="+topicID,
-			success: function(result){
-				var count = JSON.parse(result);
-				return(count);
-			}
 
-		})
+		// function getScriptureCountByTopic(topicID){
+		// 	$.ajax({
+		// 	type: "GET",
+		// 	url: "/getNumScripturesByTopicID?id="+topicID,
+		// 	success: function(result){
+		// 		var count = JSON.parse(result);
+		// 		return(count);
+		// 	}
+
+		// })
 		}
-		function getRandomInt(min, max) {
-		  min = Math.ceil(min);
-		  max = Math.floor(max);
-		  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-		}
+		// function getRandomInt(min, max) {
+		//   min = Math.ceil(min);
+		//   max = Math.floor(max);
+		//   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+		// }
 	</script>
 </body>
 </html>

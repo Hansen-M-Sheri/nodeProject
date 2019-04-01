@@ -79,7 +79,7 @@ function signup(req, res){
 			res.status(400).send("Error: " + err);
 		}
 		else{
-			res.status(204).send({success: true, result: data});
+			res.status(204).send({success: true});
 		}
 	})
 }
@@ -136,7 +136,7 @@ function getUser(req, res){
 	pool.query(sql, params, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
@@ -151,7 +151,7 @@ function getTopicIDByName(req, res){
 	pool.query(sql, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
@@ -169,7 +169,7 @@ function getAllTopics(req, res){
 	pool.query(sql, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
@@ -186,7 +186,7 @@ function getReferencesByTopic(req, res){
 	pool.query(sql, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
@@ -203,7 +203,7 @@ function getCountScriptures(req, res){
 	pool.query(sql, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
@@ -220,7 +220,7 @@ function getScriptureByID(req, res){
 	pool.query(sql, function(err, result){
 		if (err) {
 			console.log("Error in query: " + err);
-			callback(err, null);
+			// callback(err, null);
 		}
 
 		console.log("Found result: " + JSON.stringify(result.rows));
