@@ -29,6 +29,7 @@ router.post('/signup', signup);
 
 
 function sendTwilioMsg(req, res){
+	console.log("Enter sendTwilioMsg");
 	client.messages
 	.create({
 		to: '+12087618466',
@@ -39,33 +40,41 @@ function sendTwilioMsg(req, res){
 		// console.log(data);
 	});
 	// .then(message => console.log("twilio msg: " + message.sid));
+	console.log("Exit sendTwilioMsg, msg sent");
 	res.redirect('notification.html');
 }
 
 function isAuthenticated(req, res, next){
+	console.log("Enter isAuthenticated");
 	console.log(req.session.username);
 	console.log(req.session.id);
 	if(req.session.username != null && req.session.id != null){
+		console.log("Exit isAuthenticated, success");
 		return next();
 	} 
 	else {
+		console.log("Exit isAuthenticated, no authentication");
 		res.redirect('/');
 	}
 }
 
 function logout(req,res){
+	console.log("Enter logout");
 	if (req.session.username){
   		req.session.destroy(function(err){
   			if(err) throw err;
+  			console.log("Exit logout, success");
   			res.sendFile('login.html', {root:__dirname});
   		})
   	}
   	else{
+  		console.log("Exit logout, no session");
   		res.json({success: false});
   	}
 }
 
 function signup(req, res){
+	console.log("Enter signup");
 	var username = req.body.username;
 	var password = req.body.password;
 	var phone = req.body.phone;
@@ -76,15 +85,18 @@ function signup(req, res){
 	pool.query(sql, params, function(err, data){
 		console.log("Line 77:" + data.rows);
 		if(err){
+			console.log("Exit signup with error");
 			res.status(400).send("Error: " + err);
 		}
 		else{
+			console.log("Exit signup, success!");
 			res.status(204).send({success: true});
 		}
 	})
 }
 
 function login(req, res) {
+	console.log("Enter login");
 	var username = req.body.username;
 	var password = req.body.password;
 	console.log("LOGIN():68 username/password:" + username + " " + password);
@@ -109,6 +121,7 @@ function login(req, res) {
 					//begin session and return data
 					req.session.userid = id;
 					req.session.username = username;
+					console.log("Exit login");
 					res.status(200).send({id: id, username: username, success: true});
 				}
 			})
@@ -126,7 +139,7 @@ function login(req, res) {
 }
 
 function getUser(req, res){
-	console.log("Getting user info");
+	console.log("Enter getUser");
 
 	const id = req.query.id;
 	console.log(id);
@@ -141,11 +154,12 @@ function getUser(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
+		console.log("Exit getUser");
 		res.status(200).send(json);
 	})
 }
 function getTopicIDByName(req, res){
-	console.log("Get id of topic");
+	console.log("Enter getTopicIDByName");
 	var name = req.query.name;
 	const sql = 'SELECT id FROM scripture.topic WHERE name =' + name;
 	pool.query(sql, function(err, result){
@@ -156,13 +170,14 @@ function getTopicIDByName(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
+		console.log("Exit getTopicIDByName");
 		res.status(200).send(json);
 	})
 
 }
 
 function getAllTopics(req, res){
-	console.log("Getting all topics");
+	console.log("Enter getAllTopics");
 
 	const sql = 'SELECT name FROM scripture.topic;';
 
@@ -174,11 +189,13 @@ function getAllTopics(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
+		console.log("Exit getAllTopics");
 		res.status(200).send(json);
 	})
 }
 //Get topic by id
 function getReferencesByTopic(req, res){
+	console.log("Enter getReferencesByTopic");
 	console.log("Getting all references by topic with id: " + id);
 
 	const sql = 'SELECT name FROM scripture.topic;';
@@ -191,11 +208,13 @@ function getReferencesByTopic(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
+		console.log("Exit getReferencesByTopic");
 		res.status(200).send(json);
 	})
 }
 
 function getCountScriptures(req, res){
+	console.log("Enter getCountScriptures");
 	console.log("Getting total number of scriptures in db");
 
 	const sql = 'SELECT COUNT(*) FROM scripture.scripture;';
@@ -208,6 +227,7 @@ function getCountScriptures(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
+		console.log("Exit getCountScriptures");
 		res.status(200).send(json);
 	})
 }
@@ -229,6 +249,7 @@ function getScriptureByID(req, res){
 	})
 }
 function getNumScripturesByTopicID(req, res){
+	console.log("Enter getNumScripturesByTopicID");
 	var id = req.query.id;
 	const sql = "SELECT COUNT(*) FROM scripture.scripturextopic WHERE topicid ="+ id;
 	pool.query(sql, function(err, result){
@@ -239,15 +260,18 @@ function getNumScripturesByTopicID(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows[0].count);
+		console.log("Exit getNumScripturesByTopicID");
 		res.status(200).send(json);
 	})
 }
 
 function getRandomScriptureIDByTopicID(req, res){
+	console.log("Enter getRandomScriptureIDByTopicID");
 	//get # of scriptures in Topic
 	var id = req.query.id;
 	var maxScriptures = getNumScripturesByTopicID()
-	var random = getRandomInt(0, )
+	var random = getRandomInt(0, maxScriptures);
+	console.log("Exit getRandomScriptureIDByTopicID");
 	const sql = "";
 }
 

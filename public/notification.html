@@ -25,6 +25,7 @@
 		window.addEventListener('load', getTopics);
 		
 		function getTopics(){
+			console.log("Enter Notification: getTopics");
 			//check for session
 					$.ajax({
 			type: "GET",
@@ -33,12 +34,14 @@
 				var topics = JSON.parse(result);
 				// console.log("topics: "+topics[0] + " " + topics[1]);
 				displayDropDownTopics(topics);
+				console.log("Exit Notification: getTopics");
 			}
 
 		})
 		}
 
 		function getTopicID(name){
+			console.log("Enter Notification:getTopicID");
 			//check for session
 			return new Promise(function(resolve, reject){
 				console.log("getTopicID");
@@ -49,6 +52,7 @@
 					success: function(result){
 						var id = JSON.parse(result);
 						// console.log("topics: "+topics[0] + " " + topics[1]);
+						console.log("Exit Notification:getTopicID");
 						resolve(result);
 						} 
 
@@ -57,41 +61,52 @@
 			
 		}
 		function getScriptureCountByTopic(topicID){
+			console.log("Enter Notification:getScriptureCountByTopic");
 			return new Promise(function(resolve, reject){
 				console.log("getScriptureCountByTopic: id="+ result);
+				console.log("Exit Notification:getScriptureCountByTopic");
 				resolve(1);
 			});
 		}
 
 		function getRandomInt(count){
+			console.log("Enter Notification:getRandomInt");
 			return new Promise(function(resolve, reject){
 				console.log("getRandomInt with max = "+ count);
+				console.log("Exit Notification:getRandomInt");
 				resolve(1);
 			});
 		}
 
 		function getScriptRefByID(id){
+			console.log("Enter Notification:getScriptRefByID");
 			return new Promise(function(resolve, reject){
 				console.log("getScriptRefByID: id = "+ id);
+				console.log("Exit Notification:getScriptRefByID");
 				resolve("scripture");
 			});
 		}
 
 		function getUserPhone() {
+			console.log("Enter Notification:getUserPhone");
 			return new Promise(function(resolve, reject){
 				console.log("getUserPhone");
+				console.log("Exit Notification:getUserPhone");
 				resolve();
 			});
 		}
 
 		function sendSMS(msg, phone){
+			console.log("Enter Notification:sendSMS");
 			return new Promise(function(resolve, reject){
 				console.log("sendSMS to phone: "+ phone);
 				console.log("sms msg: "+msg);
+				console.log("Exit Notification:sendSMS");
 				resolve();
 			});
 		}
 		function notify(topicName){
+			console.log("Enter Notification:notify");
 			// 1. get topic id
 			// 2. get count of scriptures
 			// 3. get random number w/ max cnt of scriptures
@@ -105,6 +120,7 @@
 			.then(getScriptRefByID)
 			// .then(getUserPhone(result)) //authenticate first
 			.then(sendSMS(phone));
+			console.log("Exit Notification:notify");
 			
 		}
 		//method to send notification by text of random scripture
@@ -119,6 +135,7 @@
 
 		//display buttons that are options to select for sending text
 		function displayDropDownTopics(topics){
+			console.log("Enter Notification:displayDropDownTopics");
 			var buttons = document.getElementById('buttons');
 			
 			for(var i = 0; i < topics.length; i++){
@@ -129,6 +146,7 @@
 				buttons.appendChild(button);
 				// console.log(topics[i].id);
 				button.onclick = notify(topics[i].name);
+				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
 
