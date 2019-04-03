@@ -118,7 +118,7 @@
 				return("Message sent");
 			// });
 		}
-		function notify(topicName){
+		function notify(id){
 			console.log("Enter Notification:notify");
 			// 1. get topic id
 			// 2. get count of scriptures
@@ -133,7 +133,7 @@
 			// .then(getScriptRefByID)
 			// // .then(getUserPhone(result)) //authenticate first
 			// .then(sendSMS(phone));
-			getTopicID(topicName);
+			getScriptureCountByTopic(id);
 			console.log("Exit Notification:notify");
 			
 		}
@@ -156,26 +156,29 @@
 			
 			for(var i = 0; i < topics.length; i++){
 				//create a table row for topics
-				var tr = document.createElement('tr');
-				var id = 3;
-				var td1 = document.createElement('td');
-				var td2 = document.createElement('td');
-				var text = document.createTextNode(topics[i].name);
-				td1.id = topics[i].name;
-				td2.id = id;
-				td1.appendChild(text);
-				tr.appendChild(td1);
-				tr.appendChild(td2);
-				table.appendChild(tr);
+				// var tr = document.createElement('tr');
+				// var id = topics[i].id;
+				// var td1 = document.createElement('td');
+				// var td2 = document.createElement('td');
+				// var text = document.createTextNode(topics[i].name);
+				// td1.id = topics[i].name;
+				// td2.id = id;
+				// td1.appendChild(text);
+				// tr.appendChild(td1);
+				// tr.appendChild(td2);
+				// table.appendChild(tr);
 				
 
-				// var button = document.createElement('button');
-				// button.className="btn btn-primary";
-				// button.id=topics[i].name; 
-				// button.innerHTML = topics[i].name;
-				// buttons.appendChild(button);
-				// console.log(topics[i].id);
-				// button.onclick = notify(topics[i].name);
+				var button = document.createElement('button');
+				button.className="btn btn-primary";
+				button.id=topics[i].id; 
+				button.value = topics[i].name;
+				button.innerHTML = topics[i].name;
+				buttons.appendChild(button);
+				console.log(topics[i].id);
+				
+
+				button.onclick = notify(id);
 				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
