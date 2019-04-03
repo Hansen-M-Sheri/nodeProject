@@ -31,6 +31,7 @@
 			type: "GET",
 			url: "/topics",
 			success: function(result){
+				console.log("result: "+ result);
 				var topics = JSON.parse(result);
 				// console.log("topics: "+topics[0] + " " + topics[1]);
 				displayDropDownTopics(topics);
