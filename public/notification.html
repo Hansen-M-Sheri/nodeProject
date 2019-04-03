@@ -43,7 +43,7 @@
 		function getTopicID(name){
 			console.log("Enter Notification:getTopicID");
 			//check for session
-			return new Promise(function(resolve, reject){
+			// return new Promise(function(resolve, reject){
 				console.log("getTopicID");
 				// resolve();
 				$.ajax({
@@ -53,57 +53,63 @@
 						var id = JSON.parse(result);
 						// console.log("topics: "+topics[0] + " " + topics[1]);
 						console.log("Exit Notification:getTopicID");
-						resolve(result);
+						getScriptureCountByTopic(result);
 						} 
 
 					})
-			});
+			// });
 			
 		}
 		function getScriptureCountByTopic(topicID){
 			console.log("Enter Notification:getScriptureCountByTopic");
-			return new Promise(function(resolve, reject){
+			// return new Promise(function(resolve, reject){
 				console.log("getScriptureCountByTopic: id="+ result);
 				console.log("Exit Notification:getScriptureCountByTopic");
-				resolve(1);
-			});
+				getRandomInt(1);
+			// });
 		}
 
 		function getRandomInt(count){
 			console.log("Enter Notification:getRandomInt");
-			return new Promise(function(resolve, reject){
+			// return new Promise(function(resolve, reject){
 				console.log("getRandomInt with max = "+ count);
 				console.log("Exit Notification:getRandomInt");
-				resolve(1);
-			});
+				getScriptRefByID(1);
+			// });
 		}
+
 
 		function getScriptRefByID(id){
 			console.log("Enter Notification:getScriptRefByID");
-			return new Promise(function(resolve, reject){
+			// return new Promise(function(resolve, reject){
 				console.log("getScriptRefByID: id = "+ id);
 				console.log("Exit Notification:getScriptRefByID");
-				resolve("scripture");
-			});
+				var content = "I walk by Faith, not by Sight";
+				var reference = "D&C 25:10";
+				var msg = content + " " + reference;
+				getUserPhone(msg);
+			// });
 		}
 
-		function getUserPhone() {
+		function getUserPhone(msg) {
 			console.log("Enter Notification:getUserPhone");
-			return new Promise(function(resolve, reject){
+			// return new Promise(function(resolve, reject){
 				console.log("getUserPhone");
 				console.log("Exit Notification:getUserPhone");
-				resolve();
-			});
+				var phone = "2087618466";
+				sendSMS(sms, phone);
+			// });
 		}
+		
 
 		function sendSMS(msg, phone){
 			console.log("Enter Notification:sendSMS");
-			return new Promise(function(resolve, reject){
+			// return new Promise(function(resolve, reject){
 				console.log("sendSMS to phone: "+ phone);
 				console.log("sms msg: "+msg);
 				console.log("Exit Notification:sendSMS");
-				resolve();
-			});
+				return("Message sent");
+			// });
 		}
 		function notify(topicName){
 			console.log("Enter Notification:notify");
@@ -113,13 +119,14 @@
 			// 4. get reference for that id in topic
 			// 5. get user phone
 			// 6. call twilio send reference as body
-			var phone = '208';
-			getTopicID(topicName)
-			.then(getScriptureCountByTopic)
-			.then(getRandomInt)
-			.then(getScriptRefByID)
-			// .then(getUserPhone(result)) //authenticate first
-			.then(sendSMS(phone));
+			// var phone = '208';
+			// getTopicID(topicName);
+			// .then(getScriptureCountByTopic)
+			// .then(getRandomInt)
+			// .then(getScriptRefByID)
+			// // .then(getUserPhone(result)) //authenticate first
+			// .then(sendSMS(phone));
+			getTopicIDByName(topicName);
 			console.log("Exit Notification:notify");
 			
 		}
