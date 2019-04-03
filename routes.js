@@ -90,7 +90,8 @@ function signup(req, res){
 		}
 		else{
 			console.log("Exit signup, success!");
-			res.status(204).send({success: true});
+			// res.status(204).send({success: true});
+			res.status(200).send("success: true");
 		}
 	})
 }
