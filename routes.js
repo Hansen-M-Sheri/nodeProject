@@ -168,7 +168,7 @@ function getTopicIDByName(req, res){
 			// callback(err, null);
 		}
 
-		console.log("Found result: " + JSON.stringify(result.rows));
+		// console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
 		console.log("Exit getTopicIDByName");
 		res.status(200).send(json);
