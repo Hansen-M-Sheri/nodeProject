@@ -16,7 +16,8 @@
 <div class="container">
 		<!-- <form class="form-group col-md-4 col-md-offset-4" method="POST" > -->
 			<center><h2>Send a Scripture by Topic to your phone</h2></center><br>
-			<div id="buttons">
+			<div id="topics">
+				<table id="topicList"></table>
 			</div>
 		<!-- </form>	 -->
 	</div>
@@ -144,20 +145,22 @@
 		//display buttons that are options to select for sending text
 		function displayDropDownTopics(topics){
 			console.log("Enter Notification:displayDropDownTopics");
-			var buttons = document.getElementById('buttons');
-			var table = document.createElement('table');
+			
+			var table = document.getElementById('topicList');
 			console.log("Topics: " + topics);
+			
 			for(var i = 0; i < topics.length; i++){
 				//create a table row for topics
 				var tr = document.createElement('tr');
 
 				var td1 = document.createElement('td');
 
-				var text = document.createTextNode(topics[i].name)
+				var text = document.createTextNode(topics[i].name);
 				td1.id = 4;
 				td1.appendChild(text);
 				tr.appendChild(td1);
 				table.appendChild(tr);
+				
 
 				// var button = document.createElement('button');
 				// button.className="btn btn-primary";
