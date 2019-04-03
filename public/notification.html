@@ -151,7 +151,7 @@
 		function displayDropDownTopics(topics){
 			console.log("Enter Notification:displayDropDownTopics");
 			
-			var table = document.getElementById('topicList');
+			var div = document.getElementById('topicList');
 			console.log("Topics: " + topics);
 			
 			for(var i = 0; i < topics.length; i++){
@@ -174,7 +174,7 @@
 				button.id=topics[i].id; 
 				button.value = topics[i].name;
 				button.innerHTML = topics[i].name;
-				buttons.appendChild(button);
+				div.appendChild(button);
 				console.log(topics[i].id);
 				
 
