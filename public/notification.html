@@ -19,6 +19,11 @@
 			<div id="topics">
 				<table id="topicList"></table>
 			</div>
+			<div id="step2"></div>
+			<div id="step3"></div>
+			<div id="step4"></div>
+			<div id="step5"></div>
+			<div id="step6"></div>
 		<!-- </form>	 -->
 	</div>
 
@@ -152,13 +157,15 @@
 			for(var i = 0; i < topics.length; i++){
 				//create a table row for topics
 				var tr = document.createElement('tr');
-
+				var id = 3;
 				var td1 = document.createElement('td');
-
+				var td2 = document.createElement('td');
 				var text = document.createTextNode(topics[i].name);
-				td1.id = 4;
+				td1.id = topics[i].name;
+				td2.id = id;
 				td1.appendChild(text);
 				tr.appendChild(td1);
+				tr.appendChild(td2);
 				table.appendChild(tr);
 				
 

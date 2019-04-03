@@ -180,7 +180,7 @@ function getTopicIDByName(req, res){
 function getAllTopics(req, res){
 	console.log("Enter getAllTopics");
 
-	const sql = 'SELECT name FROM scripture.topic;';
+	const sql = 'SELECT name, id FROM scripture.topic;';
 
 	pool.query(sql, function(err, result){
 		if (err) {
