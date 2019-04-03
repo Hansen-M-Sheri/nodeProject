@@ -46,7 +46,7 @@
 				password: password,
 				phone: phone
 			};
-			console.log("params" + phone);
+			console.log("params" + phone + " " + password + " " + username);
 			$.post("/signup", params, function(result) {
 				console.log("resultLine50Signup: "+ result);
 				if (result && result.success) {
@@ -55,7 +55,7 @@
 					window.location.href = "scriptureOfDay.html";
 				} else {
 					console.log("resultLine56Signup: "+ result);
-					$("#status").text("Error with signup in.");
+					$("#status").text("Error with signup.");
 				}
 			});
 		}
