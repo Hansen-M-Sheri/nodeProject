@@ -69,10 +69,16 @@
 		}
 		function getScriptureCountByTopic(topicID){
 			console.log("Enter Notification:getScriptureCountByTopic");
-			// return new Promise(function(resolve, reject){
 				console.log("getScriptureCountByTopic: id="+ topicID);
+				$.ajax({
+					type: "GET",
+					url: "/getNumScripturesByTopicID?id="+topicID,
+					success: function(result){
+						var count = JSON.parse(result);
+						getRandomInt(count);
+					}
 				console.log("Exit Notification:getScriptureCountByTopic");
-				getRandomInt(1);
+				
 			// });
 		}
 
