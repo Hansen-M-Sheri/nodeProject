@@ -58,13 +58,11 @@
 					url: "/getTopicIDByName?name="+name,
 					success: function(result){
 						var id = JSON.parse(result);
-						// console.log("topics: "+topics[0] + " " + topics[1]);
-						console.log("Exit Notification:getTopicID");
 						getScriptureCountByTopic(result);
 						} 
-
 					})
-			// });
+				console.log("Exit Notification:getTopicID");
+		
 			
 		}
 		function getScriptureCountByTopic(topicID){
@@ -77,9 +75,8 @@
 						var count = JSON.parse(result);
 						getRandomInt(count);
 					}
+				})
 				console.log("Exit Notification:getScriptureCountByTopic");
-				
-			// });
 		}
 
 		function getRandomInt(count){
