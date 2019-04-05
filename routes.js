@@ -16,6 +16,7 @@ router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
 router.get('/getNumScripturesByTopicID', getNumScripturesByTopicID);
 router.get('/getTopicIDByName', getTopicIDByName);
+// router.get('/getScriptureRefById', getScriptureRefById);
 router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
@@ -266,15 +267,21 @@ function getNumScripturesByTopicID(req, res){
 	})
 }
 
-function getRandomScriptureIDByTopicID(req, res){
-	console.log("Enter getRandomScriptureIDByTopicID");
-	//get # of scriptures in Topic
-	var id = req.query.id;
-	var maxScriptures = getNumScripturesByTopicID()
-	var random = getRandomInt(0, maxScriptures);
-	console.log("Exit getRandomScriptureIDByTopicID");
-	const sql = "";
-}
+
+// function getScriptureRefById(req, res){
+// 	var id = req.query.id;
+// 	const sql = 'SELECT * FROM scripture.scripture WHERE id ='+id;
+
+// 	pool.query(sql, function(err, result){
+// 		if (err) {
+// 			console.log("Error in query: " + err);
+// 		}
+
+// 		console.log("Found result: " + JSON.stringify(result.rows));
+// 		var json = JSON.stringify(result.rows);
+// 		res.status(200).send(json);
+// 	})
+// }
 
 
 module.exports = router;

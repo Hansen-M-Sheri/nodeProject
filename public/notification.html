@@ -100,7 +100,7 @@
 				console.log("getScriptRefByID: id = "+ id);
 				$.ajax({
 				type: "GET",
-				url: "/getScriptureByID?id="+topicID,
+				url: "/getScriptureByID?id="+id,
 				success: function(result){
 					var result = JSON.parse(result);
 					var content = result.content;
