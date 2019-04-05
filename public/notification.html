@@ -102,11 +102,13 @@
 				type: "GET",
 				url: "/getScriptureByID?id="+id,
 				success: function(result){
-					
-					var result = JSON.parse(result.book);
-					console.log("ScriptRef = "+result[0].book);
-					var content = result.content;
-					var reference = result.reference;
+					console.log("line 105 : " + result);
+					var data = JSON.parse(result);
+					var book = data[0].book;
+					var chapter = data[0].chapter;
+					var verse = data[0].verse;
+					var content = data[0].content;
+					console.log("line 111: " + book + chapter + verse + content);
 					var msg = content + " " + reference;
 					getUserPhone(msg);
 					
