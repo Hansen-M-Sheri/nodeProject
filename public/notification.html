@@ -50,40 +50,41 @@
 		function getTopicID(name){
 			console.log("Enter Notification:getTopicID");
 			//check for session
-			// return new Promise(function(resolve, reject){
-				console.log("getTopicID");
-				// resolve();
-				$.ajax({
-					type: "GET",
-					url: "/getTopicIDByName?name="+name,
-					success: function(result){
-						var id = JSON.parse(result);
-						getScriptureCountByTopic(result);
-						} 
-					})
-				console.log("Exit Notification:getTopicID");
+			console.log("getTopicID");
+
+			$.ajax({
+				type: "GET",
+				url: "/getTopicIDByName?name="+name,
+				success: function(result){
+					var id = JSON.parse(result);
+					getScriptureCountByTopic(result);
+					} 
+				})
+			console.log("Exit Notification:getTopicID");
 		
 			
 		}
 		function getScriptureCountByTopic(topicID){
 			console.log("Enter Notification:getScriptureCountByTopic");
-				console.log("getScriptureCountByTopic: id="+ topicID);
-				$.ajax({
-					type: "GET",
-					url: "/getNumScripturesByTopicID?id="+topicID,
-					success: function(result){
-						var count = JSON.parse(result);
-						getRandomInt(count);
-					}
-				})
-				console.log("Exit Notification:getScriptureCountByTopic");
+			console.log("getScriptureCountByTopic: id="+ topicID);
+
+			$.ajax({
+				type: "GET",
+				url: "/getNumScripturesByTopicID?id="+topicID,
+				success: function(result){
+					var count = JSON.parse(result);
+					getRandomInt(count);
+				}
+			})
+
+			console.log("Exit Notification:getScriptureCountByTopic");
 		}
 
 		function getRandomInt(count){
 			console.log("Enter Notification:getRandomInt");
 			// return new Promise(function(resolve, reject){
 				console.log("getRandomInt with max = "+ count);
-				var min = 0;
+				var min = 1;
 		  		var max = Math.floor(count);
 				var random =  Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 		
@@ -121,6 +122,14 @@
 			// return new Promise(function(resolve, reject){
 				console.log("sendSMS to phone: "+ phone);
 				console.log("sms msg: "+msg);
+				$.ajax({
+					type: "get",
+					url: "/twilio?phone="+phone&"msg="+msg,
+					success: function(result){
+						var id = JSON.parse(result);
+						getScriptureCountByTopic(result);
+						} 
+					})
 				console.log("Exit Notification:sendSMS");
 				return("Message sent");
 			// });
@@ -180,13 +189,7 @@
 				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
-
-		//set onclick trigger for dynamically created buttons to DOM
-		// $(document).on('click', '#topics', {id: $(this).attr('id')}, function(event){
-		// 	var data = event.data;
-		// 	console.log(data.extra);
-		// 	// notify(this.id);
-		// })
+		//create onclick handler for dynamically created buttons
 		$('.topics').on('click', '.btn', function(){
 			var id = $(this).attr('id');
 			// console.log(id);
@@ -203,11 +206,7 @@
 
 		// })
 		// }
-		// function getRandomInt(min, max) {
-		//   min = Math.ceil(min);
-		//   max = Math.floor(max);
-		//   return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-		// }
+
 	</script>
 </body>
 </html>
