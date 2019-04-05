@@ -167,7 +167,9 @@
 				console.log(topics[i].id);
 				
 
-				button.onclick = notify;
+				button.onclick = (function(topics[i].id){
+					notify(topics[i].id);
+				};
 				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
