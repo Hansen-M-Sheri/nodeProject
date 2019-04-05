@@ -170,14 +170,18 @@
 				
 
 				// button.onclick = notify;
+				// $("button").on("click", {
+				// 	id: id}
+				// })
 				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
 
 		//set onclick trigger for dynamically created buttons to DOM
-		$(".topics button").on("click", function(){
-			console.log("This.id = " + this.id);
-			notify(this.id);
+		$(document).on('click', '.topics', {id: id}, function(event){
+			var data = event.data;
+			console.log(data.extra);
+			// notify(this.id);
 		})
 		// function getScriptureCountByTopic(topicID){
 		// 	$.ajax({
