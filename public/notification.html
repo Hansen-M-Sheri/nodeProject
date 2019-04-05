@@ -17,7 +17,7 @@
 		<!-- <form class="form-group col-md-4 col-md-offset-4" method="POST" > -->
 			<center><h2>Send a Scripture by Topic to your phone</h2></center><br>
 			<div id="topics">
-				<table id="topicList"></table>
+				<!-- <table id="topicList"></table> -->
 			</div>
 			<div id="step2"></div>
 			<div id="step3"></div>
@@ -155,7 +155,7 @@
 		function displayDropDownTopics(topics){
 			console.log("Enter Notification:displayDropDownTopics");
 			
-			var div = document.getElementById('topicList');
+			var div = document.getElementById('topics');
 			console.log("Topics: " + topics);
 			
 			for(var i = 0; i < topics.length; i++){	
@@ -169,14 +169,16 @@
 				console.log(id);
 				
 
-				button.onclick = (function(id){
-					notify(id);
-				});
+				// button.onclick = notify;
 				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
 
-
+		//set onclick trigger for dynamically created buttons to DOM
+		$("body").on("click", ".topics", function(){
+			console.log("This.id = " + this.id);
+			notify(this.id);
+		})
 		// function getScriptureCountByTopic(topicID){
 		// 	$.ajax({
 		// 	type: "GET",
