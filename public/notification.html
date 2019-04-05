@@ -16,7 +16,7 @@
 <div class="container">
 		<!-- <form class="form-group col-md-4 col-md-offset-4" method="POST" > -->
 			<center><h2>Send a Scripture by Topic to your phone</h2></center><br>
-			<div id="topics">
+			<div class="topics">
 				<!-- <table id="topicList"></table> -->
 			</div>
 			<div id="step2"></div>
@@ -183,7 +183,7 @@
 		// 	console.log(data.extra);
 		// 	// notify(this.id);
 		// })
-		$(document).on('click', '#topics', function(){
+		$('body').on('click', '.topics', function(){
 			var id = $(this).attr('id');
 			console.log(id);
 			// notify(this.id);
