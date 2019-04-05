@@ -121,7 +121,7 @@
 				return("Message sent");
 			// });
 		}
-		function notify(){
+		function notify(id){
 			console.log("Enter Notification:notify");
 			// 1. get topic id
 			// 2. get count of scriptures
@@ -157,18 +157,19 @@
 			var div = document.getElementById('topicList');
 			console.log("Topics: " + topics);
 			
-			for(var i = 0; i < topics.length; i++){		
+			for(var i = 0; i < topics.length; i++){	
+				var id = topics[i].id;	
 				var button = document.createElement('button');
 				button.className="btn btn-primary";
-				button.id=topics[i].id; 
+				button.id = id; 
 				button.value = topics[i].name;
 				button.innerHTML = topics[i].name;
 				div.appendChild(button);
-				console.log(topics[i].id);
+				console.log(id);
 				
 
-				button.onclick = (function(topics[i].id){
-					notify(topics[i].id);
+				button.onclick = (function(id){
+					notify(id);
 				};
 				console.log("Exit Notification:displayDropDownTopics");
 			}
