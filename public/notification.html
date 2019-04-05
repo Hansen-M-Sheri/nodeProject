@@ -102,7 +102,7 @@
 				type: "GET",
 				url: "/getScriptureByID?id="+id,
 				success: function(result){
-					console.log("ScriptRef = "+result)
+					console.log("ScriptRef = "+result[0].book)
 					var result = JSON.parse(result.book);
 					var content = result.content;
 					var reference = result.reference;
