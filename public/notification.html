@@ -175,7 +175,7 @@
 		}
 
 		//set onclick trigger for dynamically created buttons to DOM
-		$("body").on("click", ".topics", function(){
+		$(".topics button").on("click", function(){
 			console.log("This.id = " + this.id);
 			notify(this.id);
 		})
