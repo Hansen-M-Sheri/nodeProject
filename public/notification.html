@@ -126,12 +126,11 @@
 					type: "get",
 					url: "/twilio?phone="+phone&"msg="+msg,
 					success: function(result){
-						var id = JSON.parse(result);
-						getScriptureCountByTopic(result);
+						console.log("Exit Notification:sendSMS");
 						} 
 					})
-				console.log("Exit Notification:sendSMS");
-				return("Message sent");
+				
+				// return("Message sent");
 			// });
 		}
 		function notify(id){
