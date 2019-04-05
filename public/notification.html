@@ -98,11 +98,24 @@
 			console.log("Enter Notification:getScriptRefByID");
 			// return new Promise(function(resolve, reject){
 				console.log("getScriptRefByID: id = "+ id);
+				$.ajax({
+				type: "GET",
+				url: "/getScriptureByID?id="+topicID,
+				success: function(result){
+					var result = JSON.parse(result);
+					var content = result.content;
+					var reference = result.reference;
+					var msg = content + " " + reference;
+					getUserPhone(msg);
+					
+				}
+			})
 				console.log("Exit Notification:getScriptRefByID");
-				var content = "I walk by Faith, not by Sight";
-				var reference = "D&C 25:10";
-				var msg = content + " " + reference;
-				getUserPhone(msg);
+
+				// var content = "I walk by Faith, not by Sight";
+				// var reference = "D&C 25:10";
+				// var msg = content + " " + reference;
+				// getUserPhone(msg);
 			// });
 		}
 
@@ -141,27 +154,11 @@
 			// 4. get reference for that id in topic
 			// 5. get user phone
 			// 6. call twilio send reference as body
-			// var phone = '208';
-			// getTopicID(topicName);
-			// .then(getScriptureCountByTopic)
-			// .then(getRandomInt)
-			// .then(getScriptRefByID)
-			// // .then(getUserPhone(result)) //authenticate first
-			// .then(sendSMS(phone));
-			// console.log("id in notify is: "+ id);
+
 			getScriptureCountByTopic(id);
 			console.log("Exit Notification:notify");
 			
 		}
-		//method to send notification by text of random scripture
-		// function notify(topicName, getTopicID, getScriptureCountByTopic, getRandomInt, getScriptRefByID ){
-		// 	//get topicID
-		// 	var id = getTopicID(topicName, );
-		// 	//get count of scriptures
-		// 	var count = getScriptureCountByTopic(id);
-		// 	// this.innerHTML = count;
-		// 	// this.className += ' dynamic-success';
-		// }
 
 		//display buttons that are options to select for sending text
 		function displayDropDownTopics(topics){
@@ -179,12 +176,7 @@
 				button.innerHTML = topics[i].name;
 				div.appendChild(button);
 				console.log(id);
-				
 
-				// button.onclick = notify;
-				// $("button").on("click", {
-				// 	id: id}
-				// })
 				console.log("Exit Notification:displayDropDownTopics");
 			}
 		}
@@ -194,17 +186,6 @@
 			// console.log(id);
 			notify(this.id);
 		});
-		// function getScriptureCountByTopic(topicID){
-		// 	$.ajax({
-		// 	type: "GET",
-		// 	url: "/getNumScripturesByTopicID?id="+topicID,
-		// 	success: function(result){
-		// 		var count = JSON.parse(result);
-		// 		return(count);
-		// 	}
-
-		// })
-		// }
 
 	</script>
 </body>
