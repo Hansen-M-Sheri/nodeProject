@@ -178,11 +178,16 @@
 		}
 
 		//set onclick trigger for dynamically created buttons to DOM
-		$(document).on('click', '#topics', {id: $(this).attr('id')}, function(event){
-			var data = event.data;
-			console.log(data.extra);
+		// $(document).on('click', '#topics', {id: $(this).attr('id')}, function(event){
+		// 	var data = event.data;
+		// 	console.log(data.extra);
+		// 	// notify(this.id);
+		// })
+		$(document).on('click', '#topics', function(){
+			var id = $(this).attr('id');
+			console.log(id);
 			// notify(this.id);
-		})
+		});
 		// function getScriptureCountByTopic(topicID){
 		// 	$.ajax({
 		// 	type: "GET",
