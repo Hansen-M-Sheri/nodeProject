@@ -83,8 +83,12 @@
 			console.log("Enter Notification:getRandomInt");
 			// return new Promise(function(resolve, reject){
 				console.log("getRandomInt with max = "+ count);
+				var min = 0;
+		  		var max = Math.floor(count);
+				var random =  Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+		
 				console.log("Exit Notification:getRandomInt");
-				getScriptRefByID(1);
+				getScriptRefByID(random);
 			// });
 		}
 
