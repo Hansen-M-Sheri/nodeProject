@@ -95,7 +95,7 @@ function signup(req, res){
 	var sql = 'INSERT INTO scripture.user(username, password, phone) VALUES ($1, $2, $3) RETURNING id';
 	var params = [username, hashedPassword, phone];
 	pool.query(sql, params, function(err, data){
-		console.log("Line 77:" + data.rows);
+		console.log("Line 77:" + data);
 		if(err){
 			console.log("Exit signup with error");
 			res.status(400).send("Error: " + err);
