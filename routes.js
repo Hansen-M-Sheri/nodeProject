@@ -102,9 +102,11 @@ function signup(req, res){
 		}
 		else{
 			console.log("Exit signup, success!");
-			// res.status(204).send({success: true});
+			var id = data.rows[0]['id'];
+			// var username = data.rows[0]['username'];
+			//begin session and return data
 			req.session.userid = id;
-			req.session.username = username;
+			// req.session.username = username;
 			res.status(200).send({success: true});
 		}
 	})
