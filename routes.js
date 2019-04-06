@@ -11,6 +11,7 @@ var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN)
 //home page route
 router.get('/', (req, res) => res.sendFile('public/login.html', {root:__dirname}));
 router.get('/getUser', getUser);
+router.get('/getPhone', getPhone);
 router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
@@ -27,7 +28,17 @@ router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
 
-
+function getPhone(req, res){
+	console.log("Enter GetPhone");
+	if (req.session.phone){
+		console.log("Exit getPhone, phone is : " + req.session.phone);
+  		res.json({success: true, phone: req.session.phone});
+  	}
+  	else{
+  		console.log("Exit getPhone, no session");
+  		res.json({success: false});
+  	}
+}
 
 function sendTwilioMsg(req, res){
 	console.log("Enter sendTwilioMsg");
