@@ -194,7 +194,7 @@ function getTopicIDByName(req, res){
 }
 
 function getAllTopics(req, res){
-	console.log("Enter getAllTopics");
+	console.log("Enter getAllTopics : req = " + req);
 
 	const sql = 'SELECT name, id FROM scripture.topic;';
 
