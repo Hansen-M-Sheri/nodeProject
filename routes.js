@@ -41,7 +41,7 @@ router.post('/signup', signup);
 // }
 
 function sendTwilioMsg(req, res){
-	console.log("Enter sendTwilioMsg: Phone = " + req.body.phone + "msg: "+ req.body.msg);
+	console.log("Enter sendTwilioMsg: Phone = " + req.query.phone + "msg: "+ req.query.msg);
 	// client.messages
 	// .create({
 	// 	to: '+12087618466',
