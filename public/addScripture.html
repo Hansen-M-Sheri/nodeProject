@@ -32,7 +32,7 @@
 		</form>	
 		
 	</div>
-  	<hr>
+  	
   	<div class="container">
 		<form class="form-group col-md-4 col-md-offset-4" method="post">
 			<!-- <center><h2>Add Scripture</h2></center><br> -->
@@ -91,16 +91,16 @@
 			};
 
 			console.log(params);
-		$.post("/addScripture", params, function(result) {
-			console.log("result: "+ result);
-			if (result && result.success) {
-				$("#status").text("Scripture Added");
-				// window.location.href = "scriptureOfDay.html";
-			} else {
-				$("#status").text("Error logging in.");
-			}
-		});
-		}
+		// $.post("/addScripture", params, function(result) {
+		// 	console.log("result: "+ result);
+		// 	if (result && result.success) {
+		// 		$("#status").text("Scripture Added");
+		// 		// window.location.href = "scriptureOfDay.html";
+		// 	} else {
+		// 		$("#status").text("Error logging in.");
+		// 	}
+		// });
+		// }
 
 		
 		
