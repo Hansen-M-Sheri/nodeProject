@@ -44,9 +44,9 @@ function sendTwilioMsg(req, res){
 	console.log("Enter sendTwilioMsg: Phone = " + req.phone + "msg: "+ req.msg);
 	client.messages
 	.create({
-		to: '+'+ req.phone,
+		to: '+12087618466',
 		from: '+12083142782',
-		body: 'Test twilio message'
+		body: req.msg
 	}, function(err, data){
 		if(err){ console.log(err);}
 		// console.log(data);
