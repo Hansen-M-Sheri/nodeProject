@@ -16,10 +16,10 @@
 <body>
 	<header>
 		<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Scripture of the Day</a>
-		</div>
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Scripture of the Day</a>
+				</div>
 		<ul class="nav navbar-nav">
 				<li class="active"><a href="scriptureOfDay.html">Home</a></li>
 				<li><a href="addTopic.html">Topic</a></li>
@@ -65,7 +65,7 @@
 				description: description
 			}
 					console.log(params);
-		$.post("/addTopic", params, function(result) {
+		$.get("/addTopic", params, function(result) {
 			console.log("result: "+ result);
 			if (result && result.success) {
 				$("#statusTopic").text("Topic Added");
