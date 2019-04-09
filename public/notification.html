@@ -149,7 +149,7 @@
 				console.log("sms msg: "+msg);
 				$.ajax({
 					type: "get",
-					url: "/twilio?phone="+phone&"msg="+msg,
+					url: "/twilio?phone="+phone +"&msg="+msg,
 					success: function(result){
 						console.log("Exit Notification:sendSMS");
 						} 
