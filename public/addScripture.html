@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Scriptures</title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="navBar navbar-expand-sm bg-dark navbar-dark" >
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="signup.html">Signup</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+	 <!-- Jumbotron -->
+    <div class="jumbotron bg-info" id="banner">
+      <h1>Add Scriptures</h1>      
+  	</div>
+  	
+  	
+  	<div class="container">
+		<form class="form-group col-md-4 col-md-offset-4" method="post">
+			<!-- <center><h2>Add Scripture</h2></center><br> -->
+			<input type="text" id="book" placeholder="book" name="book" class="form-control" required><br>
+			<input type="text"  id="chapter" placeholder="chapter" name="chapter" class="form-control" required><br>
+			<input type="text"  id="verse" placeholder="verse" name="verse" class="form-control" required><br>
+			<input type="textArea"  id="content" placeholder="content" name="content" class="form-control" required><br>
+			<select id="select">
+			 
+			</select>
+			<input type="text"  id="chapter" placeholder="chapter" name="chapter" class="form-control" required><br>
+			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="login()">
+			<div id="status"></div>
+		</form>	
+		
+	</div>
+
+	<script>
+		window.addEventListener('load', getTopics);
+
+		function addScripture(){
+		// 	console.log("line 39 file: login.html");
+		// 	event.preventDefault();
+		// 	var username = $("#username").val();
+		// var password = $("#password").val();
+
+		// var params = {
+		// 	username: username,
+		// 	password: password
+		// };
+
+		// $.post("/login", params, function(result) {
+		// 	console.log("result: "+ result);
+		// 	if (result && result.success) {
+		// 		$("#status").text("Logging you in....");
+		// 		window.location.href = "scriptureOfDay.html";
+		// 	} else {
+		// 		$("#status").text("Error logging in.");
+		// 	}
+		// });
+		}
+
+		
+		
+		function getTopics(){
+			console.log("Enter Notification: getTopics");
+			//check for session
+					$.ajax({
+			type: "GET",
+			url: "/topics",
+			success: function(result){
+				console.log("result: "+ result);
+				var topics = JSON.parse(result);
+				// console.log("topics: "+topics[0] + " " + topics[1]);
+				displayDropDownTopics(topics);
+				console.log("Exit Notification: getTopics");
+			}
+
+		})
+		}
+
+		function getTopicID(name){
+			console.log("Enter Notification:getTopicID");
+			//check for session
+			console.log("getTopicID");
+
+			$.ajax({
+				type: "GET",
+				url: "/getTopicIDByName?name="+name,
+				success: function(result){
+					var id = JSON.parse(result);
+					getScriptureCountByTopic(result);
+					} 
+				})
+			console.log("Exit Notification:getTopicID");
+		
+			
+		}
+		//display buttons that are options to select for sending text
+		function displayDropDownTopics(topics){
+			console.log("Enter Notification:displayDropDownTopics");
+			
+			var select = document.getElementById('select');
+			console.log("Topics: " + topics);
+			
+			for(var i = 0; i < topics.length; i++){	
+				var id = topics[i].id;	
+				var option = document.createElement('option');
+				option.className="btn btn-primary";
+				option.id = id; 
+				button.text = topics[i].name;
+				// button.innerHTML = topics[i].name;
+				select.appendChild(option);
+				console.log(id);
+
+				console.log("Exit Notification:displayDropDownTopics");
+			}
+		}
+	</script>
+</body>
+</html>
