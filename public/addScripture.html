@@ -33,8 +33,8 @@
 			<select id="select">
 			 
 			</select>
-			<input type="text"  id="chapter" placeholder="chapter" name="chapter" class="form-control" required><br>
-			<input type="submit" name="submitLogin" class="btn btn-primary btn-block" onclick="login()">
+			
+			<input type="submit" name="addScripture" class="btn btn-primary btn-block" onclick="addScripture()">
 			<div id="status"></div>
 		</form>	
 		
@@ -45,15 +45,22 @@
 
 		function addScripture(){
 		// 	console.log("line 39 file: login.html");
-		// 	event.preventDefault();
-		// 	var username = $("#username").val();
-		// var password = $("#password").val();
+			event.preventDefault();
+			var book = $("#book").val();
+			var chapter = $("#chapter").val();
+			var verse = $("#verse").val();
+			var content = $("#content").val();
+			var selected = $("#select option:selected").text();
 
-		// var params = {
-		// 	username: username,
-		// 	password: password
-		// };
+			var params = {
+				book: book,
+				chapter: chapter,
+				verse: verse,
+				content: content,
+				selected: selected
+			};
 
+			console.log(params);
 		// $.post("/login", params, function(result) {
 		// 	console.log("result: "+ result);
 		// 	if (result && result.success) {
