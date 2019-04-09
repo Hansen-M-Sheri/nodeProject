@@ -10,8 +10,8 @@ var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN)
 
 //home page route
 router.get('/', (req, res) => res.sendFile('public/login.html', {root:__dirname}));
-router.get('/getUser', getUser);
-router.get('/getPhone', getPhone);
+router.get('/getUserPhone', getUserPhone);
+// router.get('/getPhone', getPhone);
 router.get('/topics', isAuthenticated, getAllTopics);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
@@ -28,17 +28,17 @@ router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
 
-function getPhone(req, res){
-	console.log("Enter GetPhone");
-	if (req.session.phone){
-		console.log("Exit getPhone, phone is : " + req.session.phone);
-  		res.json({success: true, phone: req.session.phone});
-  	}
-  	else{
-  		console.log("Exit getPhone, no session");
-  		res.json({success: false});
-  	}
-}
+// function getPhone(req, res){
+// 	console.log("Enter GetPhone");
+// 	if (req.session.phone){
+// 		console.log("Exit getPhone, phone is : " + req.session.phone);
+//   		res.json({success: true, phone: req.session.phone});
+//   	}
+//   	else{
+//   		console.log("Exit getPhone, no session");
+//   		res.json({success: false});
+//   	}
+// }
 
 function sendTwilioMsg(req, res){
 	console.log("Enter sendTwilioMsg");
@@ -102,11 +102,6 @@ function signup(req, res){
 		}
 		else{
 			console.log("Exit signup, success!");
-			// var id = data.rows[0]['id'];
-			// // var username = data.rows[0]['username'];
-			// //begin session and return data
-			// req.session.userid = id;
-			// // req.session.username = username;
 			res.status(200).send({success: true});
 		}
 	})
@@ -155,12 +150,12 @@ function login(req, res) {
  //  	}
 }
 
-function getUser(req, res){
-	console.log("Enter getUser");
+function getUserPhone(req, res){
+	console.log("Enter getUserPhone");
 
-	const id = req.query.id;
-	console.log(id);
-	const sql = 'SELECT * FROM scripture.user WHERE id = $1::int';
+	const id = req.session.userid;
+	console.log("SessionID = " + id);
+	const sql = 'SELECT phone FROM scripture.user WHERE id = $1::int';
 	const params = [id];
 
 	pool.query(sql, params, function(err, result){
@@ -171,7 +166,7 @@ function getUser(req, res){
 
 		console.log("Found result: " + JSON.stringify(result.rows));
 		var json = JSON.stringify(result.rows);
-		console.log("Exit getUser");
+		console.log("Exit getUserPhone");
 		res.status(200).send(json);
 	})
 }
