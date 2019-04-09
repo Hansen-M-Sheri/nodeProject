@@ -27,6 +27,7 @@ router.get('/twilio', sendTwilioMsg);
 router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
+router.post('/addTopic', addTopic);
 
 function addScripture(req, res){
 	var book = "Ephesians";
@@ -34,6 +35,35 @@ function addScripture(req, res){
 	var verse = "2";
 	var content = "walk in love, as Christ also hath loved us, and hath given himself for us an offering and a sacrifice to God";
 	var topic = "Love";
+
+	if(err){
+		console.log("Exit addScripture with error");
+		res.status(400).send("Error: " + err);
+	}
+	else{
+		console.log("Exit addScripture, success!");
+		res.status(200).send({success: true});
+	}
+
+}
+
+function addTopic(req, res){
+	var topic = req.body.topic;
+	var description = req.body.description;
+	var sql = 'INSERT INTO scripture.topic(name, description) VALUES ($1, $2)';
+	var params = [topic, description];
+	pool.query(sql, params, function(err, data){
+		console.log("Line 56:" + data);
+		if(err){
+			console.log("Exit addTopic with error");
+			res.status(400).send("Error: " + err);
+		}
+		else{
+			console.log("Exit addTopic, success!");
+			res.status(200).send({success: true});
+		}
+	})
+
 }
 // function getPhone(req, res){
 // 	console.log("Enter GetPhone");

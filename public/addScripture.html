@@ -22,7 +22,7 @@
       <h1>Add Scriptures</h1>      
   	</div>
   	<div class="containerTopic">
-		<form class="form-group col-md-4 col-md-offset-4" method="post">
+		<form class="form-group col-md-4 " method="post">
 			<!-- <center><h2>Add Scripture</h2></center><br> -->
 			<input type="text" id="topic" placeholder="topic" name="topic" class="form-control" required><br>
 			<input type="textArea"  id="description" placeholder="description" name="description" class="form-control" required><br>
@@ -52,6 +52,26 @@
 
 	<script>
 		window.addEventListener('load', getTopics);
+
+		function addTopic(){
+			var topic = $("#topic").val();
+			var description = $("#description").val();
+			var params = {
+				topic: topic,
+				description: description
+			}
+					console.log(params);
+		$.post("/addTopic", params, function(result) {
+			console.log("result: "+ result);
+			if (result && result.success) {
+				$("#statusTopic").text("Topic Added");
+				// window.location.href = "scriptureOfDay.html";
+			} else {
+				$("#statusTopic").text("Error adding topic.");
+			}
+		});
+
+		}
 
 		function addScripture(){
 		// 	console.log("line 39 file: login.html");
