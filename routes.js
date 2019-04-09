@@ -41,7 +41,7 @@ router.post('/signup', signup);
 // }
 
 function sendTwilioMsg(req, res){
-	console.log("Enter sendTwilioMsg");
+	console.log("Enter sendTwilioMsg: Phone = " + req.phone + "msg: "+ req.msg);
 	client.messages
 	.create({
 		to: '+12087618466',

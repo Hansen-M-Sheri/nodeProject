@@ -132,7 +132,7 @@
 					console.log("result: "+ result);
 					var result = JSON.parse(result);
 					console.log("Exit Notification:getUserPhone : " + result[0].phone);
-					var phone = "2087618466";
+					var phone = result[0].phone;
 					sendSMS(msg, phone);
 				}
 			})
@@ -147,17 +147,16 @@
 			// return new Promise(function(resolve, reject){
 				console.log("sendSMS to phone: "+ phone);
 				console.log("sms msg: "+msg);
-				// $.ajax({
-				// 	type: "get",
-				// 	url: "/twilio?phone="+phone&"msg="+msg,
-				// 	success: function(result){
+				$.ajax({
+					type: "get",
+					url: "/twilio?phone="+phone&"msg="+msg,
+					success: function(result){
 						console.log("Exit Notification:sendSMS");
-					// 	} 
-					// })
-				
-				// return("Message sent");
-			// });
-		}
+						} 
+					})
+				return("Message sent");
+			}
+		
 		function notify(id){
 			console.log("Enter Notification:notify");
 			// 1. get topic id
