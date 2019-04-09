@@ -32,7 +32,7 @@
 			<input type="text" id="topic" placeholder="topic" name="topic" class="form-control" required><br>
 			<input type="textArea"  id="description" placeholder="description" name="description" class="form-control" required><br>
 			
-			<input type="submit" value="Add Topic" name="addTopic" class="btn btn-primary btn-block" onclick="addTopic()">
+			<input type="submit" id="addTopicSubmit" value="Add Topic" name="addTopic" class="btn btn-primary btn-block">
 			<div id="statusTopic"></div>
 		</form>	
 		
@@ -49,7 +49,7 @@
 			 
 			</select>
 			
-			<input type="submit" value="Add Scripture" name="addScripture" class="btn btn-primary btn-block" onclick="addScripture()">
+			<input type="submit" id="addScriptSubmit" value="Add Scripture" name="addScripture" class="btn btn-primary btn-block" >
 			<div id="status"></div>
 		</form>	
 		
@@ -57,6 +57,9 @@
 
 	<script>
 		window.addEventListener('load', getTopics);
+		document.getElementById('addScriptSubmit').addEventListener('click', addScripture);
+		document.getElementById('addTopicSubmit').addEventListener('click', addTopic);
+
 
 		function addTopic(){
 			// event.preventDefault();
