@@ -42,16 +42,18 @@ router.post('/signup', signup);
 
 function sendTwilioMsg(req, res){
 	console.log("Enter sendTwilioMsg: Phone = " + req.query.phone + "msg: "+ req.query.msg);
-	// client.messages
-	// .create({
-	// 	to: '+12087618466',
-	// 	from: '+12083142782',
-	// 	body: req.msg
-	// }, function(err, data){
-	// 	if(err){ console.log(err);}
-	// 	// console.log(data);
-	// });
-	// .then(message => console.log("twilio msg: " + message.sid));
+	var toPhone = '+'+req.query.phone;
+	var msg = req.query.msg;
+	client.messages
+	.create({
+		to: toPhone,
+		from: '+12083142782',
+		body: msg
+	}, function(err, data){
+		if(err){ console.log(err);}
+		// console.log(data);
+	});
+	.then(message => console.log("twilio msg: " + message.sid));
 	console.log("Exit sendTwilioMsg, msg sent");
 	res.redirect('notification.html');
 }
