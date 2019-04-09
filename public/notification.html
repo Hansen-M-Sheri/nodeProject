@@ -131,7 +131,7 @@
 				success: function(result){
 					console.log("result: "+ result);
 					var result = JSON.parse(result);
-					console.log("Exit Notification:getUserPhone : " + result.phone);
+					console.log("Exit Notification:getUserPhone : " + result[0].phone);
 					var phone = "2087618466";
 					sendSMS(msg, phone);
 				}
