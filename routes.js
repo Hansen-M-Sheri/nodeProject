@@ -42,7 +42,7 @@ router.post('/signup', signup);
 
 function sendTwilioMsg(req, res){
 	console.log("Enter sendTwilioMsg: Phone = " + req.query.phone + "msg: "+ req.query.msg);
-	var toPhone = '+'+req.query.phone;
+	var toPhone = '+1'+req.query.phone;
 	var msg = req.query.msg;
 	client.messages
 	.create({
