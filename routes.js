@@ -53,7 +53,7 @@ function sendTwilioMsg(req, res){
 		if(err){ console.log(err);}
 		// console.log(data);
 	});
-	// .then(message => console.log("twilio msg: " + message.sid));
+	
 	console.log("Exit sendTwilioMsg, msg sent");
 	res.redirect('notification.html');
 }
