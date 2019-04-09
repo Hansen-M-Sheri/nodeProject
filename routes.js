@@ -41,16 +41,16 @@ router.post('/signup', signup);
 // }
 
 function sendTwilioMsg(req, res){
-	console.log("Enter sendTwilioMsg: Phone = " + req.phone + "msg: "+ req.msg);
-	client.messages
-	.create({
-		to: '+12087618466',
-		from: '+12083142782',
-		body: req.msg
-	}, function(err, data){
-		if(err){ console.log(err);}
-		// console.log(data);
-	});
+	console.log("Enter sendTwilioMsg: Phone = " + req.body.phone + "msg: "+ req.body.msg);
+	// client.messages
+	// .create({
+	// 	to: '+12087618466',
+	// 	from: '+12083142782',
+	// 	body: req.msg
+	// }, function(err, data){
+	// 	if(err){ console.log(err);}
+	// 	// console.log(data);
+	// });
 	// .then(message => console.log("twilio msg: " + message.sid));
 	console.log("Exit sendTwilioMsg, msg sent");
 	res.redirect('notification.html');
