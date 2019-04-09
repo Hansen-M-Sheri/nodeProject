@@ -59,7 +59,8 @@
 		window.addEventListener('load', getTopics);
 
 		function addTopic(){
-			event.preventDefault();
+			// event.preventDefault();
+			console.log("Enter addTopic");
 			var topic = $("#topic").val();
 			var description = $("#description").val();
 			var params = {

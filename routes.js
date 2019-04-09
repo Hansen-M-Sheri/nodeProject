@@ -27,7 +27,7 @@ router.get('/twilio', sendTwilioMsg);
 router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
-router.post('/addTopic', addTopic);
+router.get('/addTopic', addTopic);
 
 function addScripture(req, res){
 	var book = "Ephesians";
@@ -48,8 +48,8 @@ function addScripture(req, res){
 }
 
 function addTopic(req, res){
-	var topic = req.body.topic;
-	var description = req.body.description;
+	var topic = req.query.topic;
+	var description = req.query.description;
 	var sql = 'INSERT INTO scripture.topic(name, description) VALUES ($1, $2)';
 	var params = [topic, description];
 	pool.query(sql, params, function(err, data){
