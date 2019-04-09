@@ -54,6 +54,7 @@
 		window.addEventListener('load', getTopics);
 
 		function addTopic(){
+			event.preventDefault();
 			var topic = $("#topic").val();
 			var description = $("#description").val();
 			var params = {
