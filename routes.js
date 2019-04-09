@@ -48,6 +48,7 @@ function addScripture(req, res){
 }
 
 function addTopic(req, res){
+	console.log("Enter addTopic route");
 	var topic = req.query.topic;
 	var description = req.query.description;
 	var sql = 'INSERT INTO scripture.topic(name, description) VALUES ($1, $2)';
