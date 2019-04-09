@@ -13,6 +13,7 @@ router.get('/', (req, res) => res.sendFile('public/login.html', {root:__dirname}
 router.get('/getUserPhone', getUserPhone);
 router.get('/addScripture', addScripture);
 router.get('/topics', isAuthenticated, getAllTopics);
+router.get('/addTopic', addTopic);
 router.get('/getCountScriptures', getCountScriptures);
 router.get('/getScriptureByID', getScriptureByID);
 router.get('/getNumScripturesByTopicID', getNumScripturesByTopicID);
@@ -27,7 +28,7 @@ router.get('/twilio', sendTwilioMsg);
 router.post('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
-router.get('/addTopic', addTopic);
+
 
 function addScripture(req, res){
 	var book = "Ephesians";
@@ -49,8 +50,8 @@ function addScripture(req, res){
 
 function addTopic(req, res){
 	console.log("Enter addTopic route");
-	var topic = req.query.topic;
-	var description = req.query.description;
+	var topic = 'Charity';
+	var description = 'Charity scriptures';
 	var sql = 'INSERT INTO scripture.topic(name, description) VALUES ($1, $2)';
 	var params = [topic, description];
 	pool.query(sql, params, function(err, data){
