@@ -32,11 +32,11 @@ router.post('/signup', signup);
 function addTopicToScripture(req, res){
 	var topicId = req.query.topicId;
 	var scriptureId = req.query.id;
-
-	var sql = 'INSERT INTO scripture.scripturextopic (topicid, scriptureid) VALUES ($1, $2) RETURNING id';
+	console.log("Topicid: " + topicId + " scriptID: " + scriptureId);
+	var sql = 'INSERT INTO scripture.scripturextopic (topicid, scriptureid) VALUES ($1, $2)';
 	var params = [topicId, scriptureId];
 	pool.query(sql, params, function(err, data){
-		console.log("Line 42:" + data);
+		console.log("Line 39:" + data);
 		if(err){
 			console.log("Exit addScripture with error");
 			res.status(400).send("Error: " + err);
