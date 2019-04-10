@@ -67,7 +67,7 @@
 			var verse = $("#verse").val();
 			var content = $("#content").val();
 			var selected = $("#select option:selected").attr('id');
-				console.log("Selected: " + selected);
+			console.log("Selected: " + selected);
 			var params = {
 				book: book,
 				chapter: chapter,
@@ -75,24 +75,21 @@
 				content: content,
 				selected: selected
 			};
-			$.ajax({
-				type: "GET",
-				url: "/addScripture?book="+book+"&chapter="+chapter+"&verse="+verse+"&content="+content,
-				success: function(result){
-					var topicId = params.selected;
-					console.log(result);
-					// var scriptureID = JSON.parse(result);
-					// if (result && result.success) {
-					// 	$("#status").text("Scripture Added");
-					// 	// window.location.href = "scriptureOfDay.html";
-					// 	addTopicToScripture(topicId, result.id);
-					// } else {
-					// 	$("#status").text("Error logging in.");
-					// }
-				}
-			})
+
 			
-		}
+		$.get("/addScripture", params, function(result) {
+			console.log("Params: "+ params.selected);
+			var topicId = params.selected;
+
+			if (result && result.success) {
+				$("#status").text("Scripture Added");
+				// window.location.href = "scriptureOfDay.html";
+				addTopicToScripture(topicId, result.id);
+			} else {
+				$("#status").text("Error logging in.");
+			}
+		});
+		 }
 
 		function addTopicToScripture(topic, id){
 			console.log("Enter addTopicToScripture id: " + id);
