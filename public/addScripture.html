@@ -83,7 +83,7 @@ console.log("Selected: " + selected);
 			if (result && result.success) {
 				$("#status").text("Scripture Added");
 				// window.location.href = "scriptureOfDay.html";
-				addTopicToScripture(topic, result.id);
+				addTopicToScripture(topicId, result.id);
 			} else {
 				$("#status").text("Error logging in.");
 			}
