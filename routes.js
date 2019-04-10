@@ -23,14 +23,14 @@ router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
 router.get('/twilio', sendTwilioMsg);
-router.get('/addTopicToScripture', addTopicToScripture):
+router.get('/addTopicToScripture', addTopicToScripture);
 
 router.get('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
 
 function addTopicToScripture(req, res){
-	var topicId = req.query.topic;
+	var topicId = req.query.topicId;
 	var scriptureId = req.query.id;
 
 	var sql = 'INSERT INTO scripture.scripturextopic (topicid, scriptureid) VALUES ($1, $2) RETURNING id';
