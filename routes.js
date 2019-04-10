@@ -23,29 +23,48 @@ router.get('/notification', function(req, resp){
 	resp.sendFile('notification.html', {root:__dirname});
 })
 router.get('/twilio', sendTwilioMsg);
-
+router.get('/addTopicToScripture', addTopicToScripture):
 
 router.get('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
 
+function addTopicToScripture(req, res){
+	var topicId = req.query.topic;
+	var scriptureId = req.query.id;
+
+	var sql = 'INSERT INTO scripture.scripturextopic (topicid, scriptureid) VALUES ($1, $2) RETURNING id';
+	var params = [topicId, scriptureId];
+	pool.query(sql, params, function(err, data){
+		console.log("Line 42:" + data);
+		if(err){
+			console.log("Exit addScripture with error");
+			res.status(400).send("Error: " + err);
+		}
+		else{
+			console.log("Exit addScripture, success!");
+			res.status(200).send({success: true});
+		}
+	})
+
+}
 
 function addScripture(req, res){
-	var book = "Ephesians";
-	var chapter = "5";
-	var verse = "2";
-	var content = "walk in love, as Christ also hath loved us, and hath given himself for us an offering and a sacrifice to God";
+	var book = req.query.book;
+	var chapter = req.query.chapter;
+	var verse = req.query.verse;
+	var content = req.query.content;
 	
 	var sql = 'INSERT INTO scripture.scripture(book, chapter, verse, content) VALUES ($1, $2, $3, $4) RETURNING id';
 	var params = [book, chapter, verse, content];
 	pool.query(sql, params, function(err, data){
-		console.log("Line 56:" + data);
+		console.log("Line 42:" + data);
 		if(err){
-			console.log("Exit addTopic with error");
+			console.log("Exit addScripture with error");
 			res.status(400).send("Error: " + err);
 		}
 		else{
-			console.log("Exit addTopic, success!");
+			console.log("Exit addScripture, success!");
 			res.status(200).send({success: true});
 		}
 	})

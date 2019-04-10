@@ -66,8 +66,8 @@
 			var chapter = $("#chapter").val();
 			var verse = $("#verse").val();
 			var content = $("#content").val();
-			var selected = $("#select option:selected").text();
-
+			var selected = $("#select option:selected").attr('id');
+console.log("Selected: " + selected);
 			var params = {
 				book: book,
 				chapter: chapter,
@@ -76,14 +76,14 @@
 				selected: selected
 			};
 
-			console.log(params);
+			
 		$.get("/addScripture", params, function(result) {
 			console.log("Params: "+ params.selected);
-			var topic = params.selected;
+			var topicId = params.selected;
 			if (result && result.success) {
 				$("#status").text("Scripture Added");
 				// window.location.href = "scriptureOfDay.html";
-				addTopicToScripture(topic, result[0].id);
+				addTopicToScripture(topic, result.id);
 			} else {
 				$("#status").text("Error logging in.");
 			}
@@ -92,7 +92,19 @@
 
 		function addTopicToScripture(topic, id){
 			console.log("Enter addTopicToScripture id: " + id);
-
+			var params = {
+				topic: topic,
+				id: id
+			}
+			$.get("/addTopicToScripture", params, function(result) {
+				if (result && result.success) {
+					$("#status").text("Topic & Scripture Added");
+					// window.location.href = "scriptureOfDay.html";
+					addTopicToScripture(topic, result.id);
+				} else {
+					$("#status").text("Error adding Topic.");
+				}
+			});
 			console.log("Exit addTopicToScripture");
 		}
 		
