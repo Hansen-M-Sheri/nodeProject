@@ -80,14 +80,15 @@
 				url: "/addScripture?book="+book+"&chapter="+chapter+"&verse="+verse+"&content="+content,
 				success: function(result){
 					var topicId = params.selected;
-					var scriptureID = JSON.parse(result);
-					if (result && result.success) {
-						$("#status").text("Scripture Added");
-						// window.location.href = "scriptureOfDay.html";
-						addTopicToScripture(topicId, result.id);
-					} else {
-						$("#status").text("Error logging in.");
-					}
+					console.log(result);
+					// var scriptureID = JSON.parse(result);
+					// if (result && result.success) {
+					// 	$("#status").text("Scripture Added");
+					// 	// window.location.href = "scriptureOfDay.html";
+					// 	addTopicToScripture(topicId, result.id);
+					// } else {
+					// 	$("#status").text("Error logging in.");
+					// }
 				}
 			})
 			
