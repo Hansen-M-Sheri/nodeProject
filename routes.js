@@ -58,14 +58,14 @@ function addScripture(req, res){
 	var sql = 'INSERT INTO scripture.scripture(book, chapter, verse, content) VALUES ($1, $2, $3, $4) RETURNING id';
 	var params = [book, chapter, verse, content];
 	pool.query(sql, params, function(err, data){
-		console.log("Line 42:" + data.id);
+		console.log("Line 42:" + data[0].id);
 		if(err){
 			console.log("Exit addScripture with error");
 			res.status(400).send("Error: " + err);
 		}
 		else{
 			console.log("Exit addScripture, success!");
-			res.status(200).send({success: true, id: data.id});
+			res.status(200).send({success: true, id: data[0].id});
 		}
 	})
 	
