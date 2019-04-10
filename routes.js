@@ -38,11 +38,11 @@ function addTopicToScripture(req, res){
 	pool.query(sql, params, function(err, data){
 		console.log("Line 39:" + data);
 		if(err){
-			console.log("Exit addScripture with error");
+			console.log("Exit addTopicToScripture with error");
 			res.status(400).send("Error: " + err);
 		}
 		else{
-			console.log("Exit addScripture, success!");
+			console.log("Exit addTopicToScripture, success!");
 			res.status(200).send({success: true});
 		}
 	})
