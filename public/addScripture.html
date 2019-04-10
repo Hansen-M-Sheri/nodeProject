@@ -79,7 +79,7 @@
 			console.log(params);
 		$.get("/addScripture", params, function(result) {
 			console.log("Params: "+ params.selected);
-			var topic = params[0].selected;
+			var topic = params.selected;
 			if (result && result.success) {
 				$("#status").text("Scripture Added");
 				// window.location.href = "scriptureOfDay.html";
@@ -91,7 +91,7 @@
 		 }
 
 		function addTopicToScripture(topic, id){
-			console.log("Enter addTopicToScripture");
+			console.log("Enter addTopicToScripture id: " + id);
 
 			console.log("Exit addTopicToScripture");
 		}
