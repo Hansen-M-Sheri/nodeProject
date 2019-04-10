@@ -65,7 +65,7 @@ function addScripture(req, res){
 		}
 		else{
 			console.log("Exit addScripture, success!");
-			res.status(200).send({success: true});
+			res.status(200).send({success: true, id: data.id});
 		}
 	})
 	
