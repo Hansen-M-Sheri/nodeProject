@@ -78,17 +78,23 @@
 
 			console.log(params);
 		$.get("/addScripture", params, function(result) {
-			console.log("Params: "+ params);
+			console.log("Params: "+ params[0].selected);
+			var topic = params[0].selected;
 			if (result && result.success) {
 				$("#status").text("Scripture Added");
 				// window.location.href = "scriptureOfDay.html";
+				addTopicToScripture(topic);
 			} else {
 				$("#status").text("Error logging in.");
 			}
 		});
 		 }
 
-		
+		function addTopicToScripture(topic){
+			console.log("Enter addTopicToScripture");
+
+			console.log("Exit addTopicToScripture");
+		}
 		
 		function getTopics(){
 			console.log("Enter Notification: getTopics");
