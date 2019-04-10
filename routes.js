@@ -25,7 +25,7 @@ router.get('/notification', function(req, resp){
 router.get('/twilio', sendTwilioMsg);
 
 
-router.post('/logout', logout);
+router.get('/logout', logout);
 router.post('/login', login);
 router.post('/signup', signup);
 
@@ -35,16 +35,21 @@ function addScripture(req, res){
 	var chapter = "5";
 	var verse = "2";
 	var content = "walk in love, as Christ also hath loved us, and hath given himself for us an offering and a sacrifice to God";
-	var topic = "Love";
-
-	if(err){
-		console.log("Exit addScripture with error");
-		res.status(400).send("Error: " + err);
-	}
-	else{
-		console.log("Exit addScripture, success!");
-		res.status(200).send({success: true});
-	}
+	
+	var sql = 'INSERT INTO scripture.scripture(book, chapter, verse, content) VALUES ($1, $2, $3, $4) RETURNING id';
+	var params = [book, chapter, verse, content];
+	pool.query(sql, params, function(err, data){
+		console.log("Line 56:" + data);
+		if(err){
+			console.log("Exit addTopic with error");
+			res.status(400).send("Error: " + err);
+		}
+		else{
+			console.log("Exit addTopic, success!");
+			res.status(200).send({success: true});
+		}
+	})
+	
 
 }
 
