@@ -77,7 +77,7 @@
 	
 	//AJAX CALLS ON TOPIC BUTTON CLICKS
 	function logout(){
-		$.post("/logout", function(result) {
+		$.get("/logout", function(result) {
 		if (result && result.success) {
 			$("#status").text("Successfully logged out.");
 		} else {
